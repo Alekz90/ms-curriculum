@@ -10,6 +10,4 @@ public interface IUsersService extends UserDetailsService {
   User save(UserDto.Register userDto, String encodedPassword);
   void updateUser(User user);
   User getUserById(String id);
-  void changePassword(String id, UserDto.ChangePassword request);
-  void recoveryPassword(String id, UserDto.RecoveryPassword request);
 }

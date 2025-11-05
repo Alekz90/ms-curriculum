@@ -45,19 +45,4 @@ public class UsersService implements IUsersService {
   public void updateUser(User user) {
     repository.save(user);
   }
-
-  @Override
-  public void changePassword(String id, UserDto.ChangePassword request) {
-    /*User user = getUserById(id);
-    if (!passwordEncoder.matches(request.oldPassword(), user.getPassword())) {
-      throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
-    }
-    user.setPassword(passwordEncoder.encode(request.newPassword()));
-    updateUser(user);*/
-  }
-
-  @Override
-  public void recoveryPassword(String id, UserDto.RecoveryPassword request) {
-    //
-  }
 }

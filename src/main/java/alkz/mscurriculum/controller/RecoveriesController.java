@@ -22,14 +22,6 @@ public class RecoveriesController {
 
   private final IUsersService service;
 
-  @PatchMapping(V1_PATH + "/{id}/recovery-password")
-  public ResponseEntity<Void> recoveryPassword(
-      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
-      @RequestBody UserDto.RecoveryPassword request) {
-    service.recoveryPassword(id, request);
-    return ResponseEntity.noContent().build();
-  }
-
   @GetMapping(V1_PATH + "/{email}/send-recovery-password")
   public ResponseEntity<Void> sendRecoverPassword(
       @PathVariable @Pattern(regexp = CommonConstants.EMAIL_PATTERN) String email) {

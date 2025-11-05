@@ -9,6 +9,7 @@ public class Constants {
   public static final String BEARER = "Bearer ";
   public static final String ROLE_NAME = "ROLE_";
   public static final String V1_PATH = "/v1";
+  public static final String PUBLIC_V1_PATH = V1_PATH + "/public";
   public static final String AUTHENTICATIONS_PATH = "authentications";
   public static final String VERIFICATIONS_PATH = "verifications";
   public static final String RECOVERIES_PATH = "recoveries";
@@ -29,7 +30,7 @@ public class Constants {
       "/v3/api-docs/**",
       "/v3/api-docs",
       "/swagger-ui/**",
-      SLASH + AUTHENTICATIONS_PATH + SLASH_ALL
+      SLASH + AUTHENTICATIONS_PATH + PUBLIC_V1_PATH + SLASH_ALL
   };
   public static final List<String> WHITELIST_PATTERNS = Utils.convertPatterEndpoints(WHITELIST);
   public static final int VERIFICATION_EXPIRATION_HOURS = 24;

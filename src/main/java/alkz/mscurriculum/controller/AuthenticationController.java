@@ -9,11 +9,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static alkz.mscurriculum.util.Constants.PUBLIC_V1_PATH;
 import static alkz.mscurriculum.util.Constants.V1_PATH;
 
 @Validated
@@ -25,13 +23,25 @@ public class AuthenticationController {
 
   private final IAuthenticationService service;
 
-  @PostMapping(V1_PATH + "/register")
+  @PostMapping(PUBLIC_V1_PATH + "/register")
   public ResponseEntity<ResultDto<UserDto.Authentication>> register(@Valid @RequestBody UserDto.Register request) {
     return ResponseEntity.ok(new ResultDto<>(service.register(request)));
   }
 
-  @PostMapping(V1_PATH + "/login")
+  @PostMapping(PUBLIC_V1_PATH + "/login")
   public ResponseEntity<ResultDto<UserDto.Authentication>> login(@Valid @RequestBody UserDto.Login request) {
     return ResponseEntity.ok(new ResultDto<>(service.login(request)));
+  }
+
+  @PatchMapping(V1_PATH + "/change-password")
+  public ResponseEntity<Void> changePassword(@RequestBody UserDto.ChangePassword request) {
+    service.changePassword(request);
+    return ResponseEntity.noContent().build();
+  }
+
+  @PatchMapping(PUBLIC_V1_PATH + "/recovery-password")
+  public ResponseEntity<Void> recoveryPassword(@RequestBody UserDto.RecoveryPassword request) {
+    service.recoveryPassword(request);
+    return ResponseEntity.noContent().build();
   }
 }

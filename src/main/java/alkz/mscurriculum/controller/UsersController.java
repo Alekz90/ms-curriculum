@@ -22,11 +22,4 @@ public class UsersController {
 
   private final IUsersService service;
 
-  @PatchMapping(V1_PATH + "/{id}/change-password")
-  public ResponseEntity<Void> changePassword(
-      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
-      @RequestBody UserDto.ChangePassword request) {
-    service.changePassword(id, request);
-    return ResponseEntity.noContent().build();
-  }
 }

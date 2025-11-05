@@ -1,11 +1,14 @@
 package alkz.mscurriculum.service;
 
+import alejdaf.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.model.UserDto;
 import alkz.mscurriculum.service.interfaces.IAuthenticationService;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.service.interfaces.IVerificationsService;
+import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,5 +38,22 @@ public class AuthenticationService implements IAuthenticationService {
         new UsernamePasswordAuthenticationToken(request.username(), request.password()));
     String token = jwtService.generateToken(usersService.loadUserByUsername(request.username()));
     return new UserDto.Authentication(token);
+  }
+
+  @Override
+  public void changePassword(UserDto.ChangePassword request) {
+    User user = usersService.getUserById(request.id());
+    if (!passwordEncoder.matches(request.oldPassword(), user.getPassword())) {
+      throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
+    }
+    user.setPassword(passwordEncoder.encode(request.newPassword()));
+    usersService.updateUser(user);
+  }
+
+  @Override
+  public void recoveryPassword(UserDto.RecoveryPassword request) {
+    User user = usersService.getUserById(request.id());
+    user.setPassword(passwordEncoder.encode(request.newPassword()));
+    usersService.updateUser(user);
   }
 }
