@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "Abilities")
+//@Document(collection = "Abilities")
 public class Ability {
 
   @MongoId
@@ -19,4 +18,3 @@ public class Ability {
   private String name;
   private Double percent;
 }
-

@@ -25,8 +25,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Objects;
 
-import static alejdaf.commonutils.util.CommonConstants.EMPTY_STRING;
+import static alejdaf.commonutils.util.CommonConstants.*;
 import static alkz.mscurriculum.util.Constants.*;
+import static alkz.mscurriculum.util.PathConstants.*;
 
 @Log4j2
 @Component

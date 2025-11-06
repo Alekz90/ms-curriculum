@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.LocalDate;
 
@@ -13,10 +12,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "ProfessionalExperiences")
+//@Document(collection = "ProfessionalExperiences")
 public class ProfessionalExperience {
-  @Id
+
+  @MongoId
   private String id;
+  private String company;
   private String position;
   private LocalDate startDate;
   private LocalDate endDate;

@@ -31,7 +31,7 @@ public class VerificationsService implements IVerificationsService {
     Verification verification = repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.VERIFICATION_NOT_FOUND));
 
-    User user = usersService.getUserById(verification.getIdUser());
+    User user = usersService.getUserById(verification.getUserId());
     if (user.isVerified()) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.USER_VERIFIED);
     }

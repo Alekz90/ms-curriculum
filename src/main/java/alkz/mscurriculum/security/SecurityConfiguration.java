@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static alkz.mscurriculum.util.Constants.WHITELIST;
+import static alkz.mscurriculum.util.PathConstants.WHITELIST;
 
 @Configuration
 @RequiredArgsConstructor

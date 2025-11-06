@@ -5,7 +5,10 @@ import alejdaf.commonutils.util.enums.ECommonError;
 
 import java.util.List;
 
+import static alejdaf.commonutils.util.CommonConstants.PATH_ALL_PATTERN;
+import static alejdaf.commonutils.util.CommonConstants.PATH_VARIABLE_PATTERN;
 import static alkz.mscurriculum.util.Constants.*;
+import static alejdaf.commonutils.util.CommonConstants.*;
 
 public final class Utils {
 

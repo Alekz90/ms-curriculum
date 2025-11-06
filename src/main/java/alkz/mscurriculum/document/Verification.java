@@ -20,16 +20,17 @@ public class Verification {
 
   @MongoId
   private String id;
-  private String idUser;
+  private String userId;
   private String code;
   private LocalDateTime creationDate;
   private LocalDateTime expirationDate;
   private LocalDateTime usedDate;
   private boolean used;
 
-  public static Verification build(String idUser, String code) {
+
+  public static Verification build(String userId, String code) {
     return Verification.builder()
-        .idUser(idUser)
+        .userId(userId)
         .code(code)
         .creationDate(CommonUtils.getCurrentLocalDateTime())
         .expirationDate(CommonUtils.getCurrentLocalDateTime().plusHours(Constants.VERIFICATION_EXPIRATION_HOURS))
