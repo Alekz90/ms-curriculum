@@ -1,4 +1,4 @@
-package alkz.mscurriculum.document;
+package document;
 
 import alejdaf.commonutils.util.CommonUtils;
 import alkz.mscurriculum.model.UserDto;

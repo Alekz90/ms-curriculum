@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.document.User;
+import document.User;
 import alkz.mscurriculum.model.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

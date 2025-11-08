@@ -1,8 +1,8 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.document.Verification;
+import document.Verification;
 
 public interface IVerificationsService {
-  Verification create(String idUser);
+  Verification create(String userId);
   void markVerificationAsUsed(String id, String code);
 }

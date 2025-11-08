@@ -1,4 +1,4 @@
-package alkz.mscurriculum.document;
+package document;
 
 import alkz.mscurriculum.model.ProfileDto;
 import lombok.AllArgsConstructor;

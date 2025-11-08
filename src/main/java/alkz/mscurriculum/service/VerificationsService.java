@@ -2,8 +2,8 @@ package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.document.User;
-import alkz.mscurriculum.document.Verification;
+import document.User;
+import document.Verification;
 import alkz.mscurriculum.repository.VerificationsRepository;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.service.interfaces.IVerificationsService;
@@ -21,8 +21,8 @@ public class VerificationsService implements IVerificationsService {
   private final IUsersService usersService;
 
   @Override
-  public Verification create(String idUser) {
-    Verification verification = Verification.build(idUser, Utils.generateCode());
+  public Verification create(String userId) {
+    Verification verification = Verification.build(userId, Utils.generateCode());
     return repository.save(verification);
   }
 

@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import alkz.mscurriculum.document.Profile;
+import document.Profile;
 import alkz.mscurriculum.model.ProfileDto;
 import alkz.mscurriculum.repository.ProfilesRepository;
 import alkz.mscurriculum.service.interfaces.IProfilesService;
@@ -57,12 +57,12 @@ public class ProfilesService implements IProfilesService {
 
   /**
    * Find profile by userId
-   * @param idUser User id
+   * @param userId User id
    * @return ProfileDto.Response
    */
   @Override
-  public ProfileDto.Response findByIdUser(String idUser) {
-    return ProfileDto.Response.build(this.findProfileByIdUser(idUser));
+  public ProfileDto.Response findByIdUser(String userId) {
+    return ProfileDto.Response.build(this.findProfileByIdUser(userId));
   }
 
   /**
@@ -77,11 +77,11 @@ public class ProfilesService implements IProfilesService {
 
   /**
    * Find profile by userId or throw not found exception
-   * @param idUser User id
+   * @param userId User id
    * @return Profile
    */
-  private Profile findProfileByIdUser(String idUser) {
-    return repository.findByIdUser(idUser)
+  private Profile findProfileByIdUser(String userId) {
+    return repository.findByUserId(userId)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.PROFILE_NOT_FOUND));
   }
 
@@ -95,8 +95,8 @@ public class ProfilesService implements IProfilesService {
         .ifPresent(p -> {throw new CustomCommonException(HttpStatus.CONFLICT, EError.PHONE_FOUND);});
   }
 
-  private void validateProfileUnique(String idUser) {
-    repository.findByIdUser(idUser)
+  private void validateProfileUnique(String userId) {
+    repository.findByUserId(userId)
         .ifPresent(p -> {throw new CustomCommonException(HttpStatus.CONFLICT, EError.PROFILE_FOUND);});
   }
 }

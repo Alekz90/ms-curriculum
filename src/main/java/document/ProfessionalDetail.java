@@ -1,6 +1,6 @@
-package alkz.mscurriculum.document;
+package document;
 
-import alkz.mscurriculum.model.ProfessionalDetailDto;
+import alkz.mscurriculum.model.DetailDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,9 +36,9 @@ public class ProfessionalDetail {
    * @param request ProfessionalDetailDto.Request
    * @return ProfessionalDetail
    */
-  public static ProfessionalDetail build(ProfessionalDetailDto.Request request) {
+  public static ProfessionalDetail build(DetailDto.Request request) {
     return ProfessionalDetail.builder()
-        .userId(request.idUser())
+        .userId(request.userId())
         .position(request.position())
         .summary(request.summary())
         .profesionalExperiences(new ArrayList<>())
@@ -52,14 +52,11 @@ public class ProfessionalDetail {
 
   /**
    * Update ProfessionalDetail from ProfessionalDetailDto.Request
-   * @param detail ProfessionalDetail
    * @param request ProfessionalDetailDto.Request
-   * @return ProfessionalDetail
    */
-  public static ProfessionalDetail update(ProfessionalDetail detail, ProfessionalDetailDto.Request request) {
-    detail.setPosition(request.position());
-    detail.setSummary(request.summary());
-    return detail;
+  public void update(DetailDto.Request request) {
+    this.position = request.position();
+    this.summary = request.summary();
   }
 }
 

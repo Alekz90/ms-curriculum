@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.document.User;
+import document.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

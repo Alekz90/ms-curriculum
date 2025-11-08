@@ -3,7 +3,7 @@ package alkz.mscurriculum.security;
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.document.User;
+import document.User;
 import alkz.mscurriculum.service.JwtService;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.util.enums.EError;

@@ -5,5 +5,5 @@ public interface IGenericCrudService<REQUEST, RESPONSE, ID> {
   RESPONSE update(ID id, REQUEST request);
 //  void delete(ID id);
   RESPONSE findById(ID id);
-  RESPONSE findByIdUser(ID idUser);
+  RESPONSE findByIdUser(ID userId);
 }
