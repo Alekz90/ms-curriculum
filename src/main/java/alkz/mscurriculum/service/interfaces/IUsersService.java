@@ -1,0 +1,13 @@
+package alkz.mscurriculum.service.interfaces;
+
+import document.User;
+import alkz.mscurriculum.model.UserDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface IUsersService extends UserDetailsService {
+  @Override
+  User loadUserByUsername(String username);
+  User save(UserDto.Register userDto, String encodedPassword);
+  void updateUser(User user);
+  User getUserById(String id);
+}
