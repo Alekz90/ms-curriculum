@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.CertificationDto;
 import alkz.mscurriculum.util.Utils;

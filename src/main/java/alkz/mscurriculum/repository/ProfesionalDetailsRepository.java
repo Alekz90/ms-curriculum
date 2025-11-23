@@ -1,6 +1,6 @@
 package alkz.mscurriculum.repository;
 
-import document.ProfessionalDetail;
+import alkz.mscurriculum.document.ProfessionalDetail;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

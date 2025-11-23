@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.DetailDto;
 import lombok.AllArgsConstructor;
@@ -21,27 +21,19 @@ public class ProfessionalDetail {
   @MongoId
   private String id;
   private String userId;
-  private String position;
-  private String summary;
-  private List<ProfessionalExperience> profesionalExperiences;
+  private Summary summary;
+  private Address address;
+  private List<ProfessionalExperience> experiences;
   private List<Language> languages;
   private List<AbilityGroup> abilityGroups;
   private List<Education> educations;
   private List<Certification> certifications;
   private List<Link> links;
-  private Address address;
 
-  /**
-   * Build ProfessionalDetail from ProfessionalDetailDto.Request
-   * @param request ProfessionalDetailDto.Request
-   * @return ProfessionalDetail
-   */
-  public static ProfessionalDetail build(DetailDto.Request request) {
+  public static ProfessionalDetail emptyDetail(String userId) {
     return ProfessionalDetail.builder()
-        .userId(request.userId())
-        .position(request.position())
-        .summary(request.summary())
-        .profesionalExperiences(new ArrayList<>())
+        .userId(userId)
+        .experiences(new ArrayList<>())
         .languages(new ArrayList<>())
         .abilityGroups(new ArrayList<>())
         .educations(new ArrayList<>())
@@ -51,12 +43,18 @@ public class ProfessionalDetail {
   }
 
   /**
-   * Update ProfessionalDetail from ProfessionalDetailDto.Request
-   * @param request ProfessionalDetailDto.Request
+   * Update professional detail data
+   * @param detail ProfessionalDetail
    */
-  public void update(DetailDto.Request request) {
-    this.position = request.position();
-    this.summary = request.summary();
+  public void update(ProfessionalDetail detail) {
+    this.summary = detail.getSummary();
+    this.address = detail.getAddress();
+    this.experiences = detail.getExperiences();
+    this.languages = detail.getLanguages();
+    this.abilityGroups = detail.getAbilityGroups();
+    this.educations = detail.getEducations();
+    this.certifications = detail.getCertifications();
+    this.links = detail.getLinks();
   }
 }
 

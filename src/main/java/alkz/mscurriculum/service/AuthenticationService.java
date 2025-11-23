@@ -1,9 +1,10 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import document.User;
+import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.model.UserDto;
 import alkz.mscurriculum.service.interfaces.IAuthenticationService;
+import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.service.interfaces.IVerificationsService;
 import alkz.mscurriculum.util.enums.EError;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements IAuthenticationService {
 
   private final IUsersService usersService;
+  private final IProfessionalDetailsService professionalDetailsService;
   private final IVerificationsService verificationsService;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
@@ -26,34 +28,55 @@ public class AuthenticationService implements IAuthenticationService {
 
   @Override
   public UserDto.Authentication register(UserDto.Register request) {
+    if (!request.acceptTerms()) {
+      throw new CustomCommonException(HttpStatus.BAD_REQUEST, EError.TERMS_NOT_ACCEPTED);
+    }
+
     User user = usersService.save(request, passwordEncoder.encode(request.password()));
+    professionalDetailsService.create(user.getId());
     verificationsService.create(user.getId());
     //TODO: Send verification email
-    return new UserDto.Authentication(jwtService.generateToken(user));
+    return UserDto.Authentication.build(jwtService.generateToken(user), user);
   }
 
   @Override
   public UserDto.Authentication login(UserDto.Login request) {
-    authenticationManager.authenticate(
+    try {
+      authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(request.username(), request.password()));
-    String token = jwtService.generateToken(usersService.loadUserByUsername(request.username()));
-    return new UserDto.Authentication(token);
+    } catch (Exception e) {
+      throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.WRONG_CREDENTIALS);
+    }
+    User user = usersService.loadUserByUsername(request.username());
+    String token = jwtService.generateToken(user);
+    return UserDto.Authentication.build(token, user);
   }
 
   @Override
-  public void changePassword(UserDto.ChangePassword request) {
-    User user = usersService.getUserById(request.id());
+  public void changePassword(String id, UserDto.ChangePassword request) {
+    User user = usersService.findById(id);
     if (!passwordEncoder.matches(request.oldPassword(), user.getPassword())) {
       throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
     }
     user.setPassword(passwordEncoder.encode(request.newPassword()));
-    usersService.updateUser(user);
+    usersService.update(user);
   }
 
   @Override
-  public void recoveryPassword(UserDto.RecoveryPassword request) {
-    User user = usersService.getUserById(request.id());
+  public void recoveryPassword(String id, UserDto.RecoveryPassword request) {
+    User user = usersService.findById(id);
     user.setPassword(passwordEncoder.encode(request.newPassword()));
-    usersService.updateUser(user);
+    usersService.update(user);
+  }
+
+  @Override
+  public UserDto.Authentication checkStatus(String tokenHeader) {
+    String token =  tokenHeader.replace("Bearer ", "");
+    String username = jwtService.getUsernameFromToken(token);
+    User user = usersService.loadUserByUsername(username);
+    if (jwtService.isInvalidToken(token, user)) {
+      throw new CustomCommonException(HttpStatus.FORBIDDEN, EError.USER_FORBIDDEN);
+    }
+    return UserDto.Authentication.build(token, user);
   }
 }

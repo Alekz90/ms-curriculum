@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.AbilityGroupDto;
 import alkz.mscurriculum.util.Utils;
@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,20 +27,27 @@ public class AbilityGroup {
    * @param request AbilityGroupDto.Request
    * @return AbilityGroup
    */
-  public static AbilityGroup build(AbilityGroupDto.Request request) {
+  public static AbilityGroup build(AbilityGroupDto.CreateRequest request) {
     return AbilityGroup.builder()
         .id(Utils.generateObjectId())
         .name(request.name())
-        .abilities(new ArrayList<>())
+        .abilities(request.abilities()
+                    .stream()
+                    .map(Ability::build)
+                    .toList())
         .build();
   }
 
   /**
    * Update AbilityGroup from AbilityGroupDto.Request
-   * @param request AbilityGroupDto.Request
+   * @param request AbilityGroupDto.UpdateRequest
    */
-  public void update(AbilityGroupDto.Request request) {
+  public void update(AbilityGroupDto.UpdateRequest request) {
     this.name = request.name();
+    this.abilities = request.abilities()
+        .stream()
+        .map(Ability::build)
+        .toList();
   }
 }
 

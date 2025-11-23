@@ -2,9 +2,10 @@ package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidNameText;
 import alkz.mscurriculum.util.enums.ELanguageLevel;
-import document.Language;
+import alkz.mscurriculum.document.Language;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class LanguageDto {
@@ -15,7 +16,7 @@ public class LanguageDto {
   @Schema(name = "LanguageDto.Request", description = "DTO for Language")
   public record Request(
       @NotBlank @ValidNameText @Size(max = 100) String name,
-      @NotBlank ELanguageLevel level) {}
+      @NotNull ELanguageLevel level) {}
 
   /**
    * Response DTO for Language

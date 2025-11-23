@@ -3,7 +3,7 @@ package alkz.mscurriculum.security;
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.CommonUtils;
-import document.User;
+import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.service.JwtService;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.util.enums.EError;
@@ -73,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
       if (StringUtils.hasText(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
         User userDetails = usersService.loadUserByUsername(username);
-        if (!jwtService.isTokenValid(token, userDetails)) {
+        if (jwtService.isInvalidToken(token, userDetails)) {
           return true;
         }
 

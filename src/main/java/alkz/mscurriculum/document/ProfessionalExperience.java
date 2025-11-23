@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.ExperienceDto;
 import alkz.mscurriculum.util.Utils;
@@ -25,6 +25,7 @@ public class ProfessionalExperience {
   private LocalDate endDate;
   private Boolean stillWorking;
   private String activities;
+  private Address location;
 
   /**
    * Build a ProfessionalExperience document from an ExperienceDto.Request
@@ -40,6 +41,7 @@ public class ProfessionalExperience {
         .endDate(request.endDate())
         .stillWorking(request.stillWorking())
         .activities(request.activities())
+        .location(Address.build(request.location()))
         .build();
   }
 
@@ -54,6 +56,7 @@ public class ProfessionalExperience {
     this.endDate = request.endDate();
     this.stillWorking = request.stillWorking();
     this.activities = request.activities();
+    this.location.update(request.location());
   }
 }
 

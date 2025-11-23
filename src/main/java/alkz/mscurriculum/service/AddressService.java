@@ -2,8 +2,8 @@ package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.enums.ECommonError;
-import document.Address;
-import document.ProfessionalDetail;
+import alkz.mscurriculum.document.Address;
+import alkz.mscurriculum.document.ProfessionalDetail;
 import alkz.mscurriculum.model.AddressDto;
 import alkz.mscurriculum.service.interfaces.IAddressService;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
@@ -22,22 +22,22 @@ public class AddressService implements IAddressService {
 
   @Override
   public AddressDto.Response create(String detailId, AddressDto.Request request) {
-    ProfessionalDetail detail =  detailsService.findDetailById(detailId);
+    ProfessionalDetail detail =  detailsService.findById(detailId);
     if (Objects.nonNull(detail.getAddress())) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.ADDRESS_FOUND);
     }
     detail.setAddress(Address.build(request));
-    return AddressDto.Response.build(detailsService.updateDetailData(detail).getAddress());
+    return AddressDto.Response.build(detailsService.update(detail).getAddress());
   }
 
   @Override
   public AddressDto.Response update(String detailId, String id, AddressDto.Request request) {
-    ProfessionalDetail detail =  detailsService.findDetailById(detailId);
+    ProfessionalDetail detail =  detailsService.findById(detailId);
     if (Objects.isNull(detail.getAddress()) || !id.equals(detail.getAddress().getId())) {
       throw new CustomCommonException(HttpStatus.NOT_FOUND, EError.ADDRESS_NOT_FOUND);
     }
     detail.getAddress().update(request);
-    detailsService.updateDetailData(detail);
+    detailsService.update(detail);
     return AddressDto.Response.build(detail.getAddress());
   }
 

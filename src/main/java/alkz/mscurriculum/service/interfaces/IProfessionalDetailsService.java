@@ -1,11 +1,14 @@
 package alkz.mscurriculum.service.interfaces;
 
-import document.ProfessionalDetail;
+import alkz.mscurriculum.document.ProfessionalDetail;
 import alkz.mscurriculum.model.DetailDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudService;
 
-public interface IProfessionalDetailsService
-    extends IGenericCrudService<DetailDto.Request, DetailDto.Response, String> {
-  ProfessionalDetail updateDetailData(ProfessionalDetail detail);
-  ProfessionalDetail findDetailById(String id);
+public interface IProfessionalDetailsService {
+  ProfessionalDetail create(String userId);
+  ProfessionalDetail update(ProfessionalDetail detail);
+  ProfessionalDetail findById(String id);
+  ProfessionalDetail findByUserId(String userId);
+  DetailDto.Response getDetailById(String id);
+  DetailDto.Response getDetailByUserId(String userId);
 }

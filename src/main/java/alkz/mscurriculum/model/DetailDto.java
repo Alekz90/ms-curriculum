@@ -1,41 +1,41 @@
 package alkz.mscurriculum.model;
 
-import alejdaf.commonutils.annotation.ValidIdentifier;
-import alejdaf.commonutils.annotation.ValidSpecialText;
-import alejdaf.commonutils.annotation.ValidTittleText;
-import document.ProfessionalDetail;
+import alkz.mscurriculum.document.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 public class DetailDto {
-
-  /**
-   * Request DTO for ProfessionalDetail
-   */
-  @Schema(name = "ProfessionalDetailDto.Request", description = "DTO for ProfessionalDetail")
-  public record Request(
-      @NotNull @ValidIdentifier String userId,
-      @NotBlank @ValidTittleText @Size(max = 100) String position,
-      @NotBlank @ValidSpecialText @Size(max = 1000) String summary) {}
 
   /**
    * Response DTO for ProfessionalDetail
    */
   @Schema(name = "ProfessionalDetailDto.Response", description = "DTO for ProfessionalDetail")
-  public record Response(String id, String userId, String position, String summary) {
+  public record Response(String id, String userId, Summary summary, Address address,
+      List<ExperienceDto.Response>experiences,
+      List<LanguageDto.Response> languages,
+      List<AbilityGroupDto.Response> abilityGroups,
+      List<EducationDto.Response> educations,
+      List<CertificationDto.Response> certifications,
+      List<LinkDto.Response> links) {
 
     /**
      * Build a Response DTO from ProfessionalDetail document
-     * @param professionalDetail ProfessionalDetail
+     * @param detail ProfessionalDetail
      */
-    public static Response build(ProfessionalDetail professionalDetail) {
+    public static Response build(ProfessionalDetail detail) {
       return new Response(
-          professionalDetail.getId(),
-          professionalDetail.getUserId(),
-          professionalDetail.getPosition(),
-          professionalDetail.getSummary());
+          detail.getId(),
+          detail.getUserId(),
+          detail.getSummary(),
+          detail.getAddress(),
+          detail.getExperiences().stream().map(ExperienceDto.Response::build).toList(),
+          detail.getLanguages().stream().map(LanguageDto.Response::build).toList(),
+          detail.getAbilityGroups().stream().map(AbilityGroupDto.Response::build).toList(),
+          detail.getEducations().stream().map(EducationDto.Response::build).toList(),
+          detail.getCertifications().stream().map(CertificationDto.Response::build).toList(),
+          detail.getLinks().stream().map(LinkDto.Response::build).toList()
+      );
     }
   }
 }

@@ -2,7 +2,7 @@ package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidSpecialText;
 import alejdaf.commonutils.annotation.ValidTittleText;
-import document.Certification;
+import alkz.mscurriculum.document.Certification;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,7 +18,7 @@ public class CertificationDto {
   @Schema(name = "CertificationDto.Request", description = "DTO for Certification")
   public record Request(
       @NotBlank @ValidTittleText @Size(max = 100) String name,
-      @NotBlank @ValidSpecialText @Size(max = 300) String description) {}
+      @NotBlank @ValidSpecialText @Size(max = 500) String description) {}
 
   /**
    * Response DTO for Certification

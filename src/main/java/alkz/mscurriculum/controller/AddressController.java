@@ -29,8 +29,8 @@ public class AddressController {
 
   @PostMapping(V1_PATH)
   public ResponseEntity<ResultDto<AddressDto.Response>> createAddress(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String idDetail,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String idDetail,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
       @Valid @RequestBody AddressDto.Request request) {
     AddressDto.Response response = service.create(idDetail, request);
     return ResponseEntity
@@ -40,8 +40,8 @@ public class AddressController {
 
   @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<AddressDto.Response>> updateAddress(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String idDetail,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String idDetail,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
       @Valid @RequestBody AddressDto.Request request) {
     return ResponseEntity.ok(new ResultDto<>(service.update(idDetail, id, request)));
   }

@@ -27,13 +27,13 @@ public class ProfilesController {
 
   @GetMapping(V1_PATH + "/{id}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileById(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id) {
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
     return ResponseEntity.ok(new ResultDto<>(service.findById(id)));
   }
 
   @GetMapping(V1_PATH + "/users/{userId}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileByUserId(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String userId) {
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId) {
     return ResponseEntity.ok(new ResultDto<>(service.findByIdUser(userId)));
   }
 

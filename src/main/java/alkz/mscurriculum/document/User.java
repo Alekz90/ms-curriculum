@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alejdaf.commonutils.util.CommonUtils;
 import alkz.mscurriculum.model.UserDto;
@@ -32,6 +32,7 @@ public class User implements UserDetails {
   private ERole role;
   private boolean blocked;
   private boolean verified;
+  private boolean acceptTerms;
 
   @Override
   public List<SimpleGrantedAuthority> getAuthorities() {
@@ -48,6 +49,7 @@ public class User implements UserDetails {
         .role(ERole.USER)
         .blocked(false)
         .verified(false)
+        .acceptTerms(userDto.acceptTerms())
         .build();
   }
 }

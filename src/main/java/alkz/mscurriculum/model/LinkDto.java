@@ -2,7 +2,7 @@ package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidSpecialText;
 import alejdaf.commonutils.annotation.ValidTittleText;
-import document.Link;
+import alkz.mscurriculum.document.Link;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

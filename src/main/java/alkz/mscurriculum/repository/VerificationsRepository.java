@@ -1,6 +1,6 @@
 package alkz.mscurriculum.repository;
 
-import document.Verification;
+import alkz.mscurriculum.document.Verification;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

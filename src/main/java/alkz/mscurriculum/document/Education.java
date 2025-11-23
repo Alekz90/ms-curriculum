@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.EducationDto;
 import alkz.mscurriculum.util.Utils;
@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
-import java.time.Year;
 
 @Data
 @NoArgsConstructor
@@ -23,8 +21,8 @@ public class Education {
   private EEducationLevel level;
   private String institute;
   private String degree;
-  private Year startDate;
-  private Year endDate;
+  private Integer startDate;
+  private Integer endDate;
   private Boolean stillStudying;
 
   /**
@@ -38,8 +36,8 @@ public class Education {
         .level(request.level())
         .institute(request.institute())
         .degree(request.degree())
-        .startDate(request.startDate())
-        .endDate(request.endDate())
+        .startDate(request.startYear())
+        .endDate(request.endYear())
         .stillStudying(request.stillStudying())
         .build();
   }
@@ -52,8 +50,8 @@ public class Education {
     this.level = request.level();
     this.institute = request.institute();
     this.degree = request.degree();
-    this.startDate = request.startDate();
-    this.endDate = request.endDate();
+    this.startDate = request.startYear();
+    this.endDate = request.endYear();
     this.stillStudying = request.stillStudying();
   }
 }

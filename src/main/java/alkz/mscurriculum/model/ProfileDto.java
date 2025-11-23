@@ -4,7 +4,7 @@ import alejdaf.commonutils.annotation.ValidCodePhone;
 import alejdaf.commonutils.annotation.ValidIdentifier;
 import alejdaf.commonutils.annotation.ValidNameText;
 import alejdaf.commonutils.annotation.ValidPhone;
-import document.Profile;
+import alkz.mscurriculum.document.Profile;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,6 +1,5 @@
 package alkz.mscurriculum.util;
 
-
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.enums.ECommonError;
 
@@ -25,9 +24,7 @@ public final class PathConstants {
   public static final String LINKS                = "links";
   public static final String LANGUAGES            = "languages";
   public static final String CERTIFICATIONS       = "certifications";
-
-
-
+  public static final String SUMMARIES            = "summaries";
 
   public static final String V1_PATH = "/v1";
   public static final String PUBLIC_V1_PATH = V1_PATH + "/public";
@@ -36,7 +33,8 @@ public final class PathConstants {
       "/v3/api-docs/**",
       "/v3/api-docs",
       "/swagger-ui/**",
-      SLASH + AUTHENTICATIONS + PUBLIC_V1_PATH + SLASH_ALL
+      SLASH + AUTHENTICATIONS + PUBLIC_V1_PATH + SLASH_ALL,
+      SLASH + VERIFICATIONS + SLASH_ALL
   };
   public static final List<String> WHITELIST_PATTERNS = Utils.convertPatterEndpoints(WHITELIST);
 

@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import document.Profile;
+import alkz.mscurriculum.document.Profile;
 import alkz.mscurriculum.model.ProfileDto;
 import alkz.mscurriculum.repository.ProfilesRepository;
 import alkz.mscurriculum.service.interfaces.IProfilesService;

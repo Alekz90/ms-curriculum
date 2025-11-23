@@ -1,7 +1,7 @@
 package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidNameText;
-import document.Address;
+import alkz.mscurriculum.document.Address;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

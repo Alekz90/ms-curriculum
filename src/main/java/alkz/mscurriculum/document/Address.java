@@ -1,6 +1,7 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alkz.mscurriculum.model.AddressDto;
+import alkz.mscurriculum.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Address {
    */
   public static Address build(AddressDto.Request request) {
     return Address.builder()
+        .id(Utils.generateObjectId())
         .country(request.country())
         .state(request.state())
         .city(request.city())

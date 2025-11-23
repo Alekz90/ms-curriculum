@@ -2,7 +2,7 @@ package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidSpecialText;
 import alejdaf.commonutils.annotation.ValidTittleText;
-import document.ProfessionalExperience;
+import alkz.mscurriculum.document.ProfessionalExperience;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,14 +22,15 @@ public class ExperienceDto {
       @NotNull LocalDate startDate,
       LocalDate endDate,
       @NotNull Boolean stillWorking,
-      @NotBlank @ValidSpecialText @Size(max = 2000) String activities) { }
+      @NotBlank @ValidSpecialText @Size(max = 2000) String activities,
+      @NotNull AddressDto.Request location) { }
 
   /**
    * Response DTO for ProfessionalExperience.
    */
   @Schema(name = "ExperienceDto.Response", description = "DTO for ProfessionalExperience")
-  public record Response(String id, String company, String position,
-                         LocalDate startDate, LocalDate endDate, Boolean stillWorking, String activities) {
+  public record Response(String id, String company, String position, LocalDate startDate, LocalDate endDate,
+                         Boolean stillWorking, String activities, AddressDto.Response location) {
 
     /**
      * Build a Response DTO from a ProfessionalExperience document.
@@ -45,7 +46,8 @@ public class ExperienceDto {
           experience.getStartDate(),
           experience.getEndDate(),
           experience.getStillWorking(),
-          experience.getActivities()
+          experience.getActivities(),
+          AddressDto.Response.build(experience.getLocation())
       );
     }
   }

@@ -1,4 +1,4 @@
-package document;
+package alkz.mscurriculum.document;
 
 import alejdaf.commonutils.util.CommonUtils;
 import alkz.mscurriculum.util.Constants;

@@ -27,7 +27,7 @@ public class CertificationsController {
 
   @PostMapping(V1_PATH + "/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<CertificationDto.Response>> createCertification(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @Valid @RequestBody CertificationDto.Request request) {
     CertificationDto.Response response = service.create(detailId, request);
     return ResponseEntity
@@ -37,16 +37,16 @@ public class CertificationsController {
 
   @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<CertificationDto.Response>> updateCertification(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
       @Valid @RequestBody CertificationDto.Request request) {
     return ResponseEntity.ok(new ResultDto<>(service.update(detailId, id, request)));
   }
 
   @DeleteMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<Void> deleteCertification(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id) {
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
     service.delete(detailId, id);
     return ResponseEntity.noContent().build();
   }

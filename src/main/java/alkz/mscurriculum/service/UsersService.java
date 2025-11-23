@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import document.User;
+import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.model.UserDto;
 import alkz.mscurriculum.repository.UsersRepository;
 import alkz.mscurriculum.service.interfaces.IUsersService;
@@ -36,13 +36,23 @@ public class UsersService implements IUsersService {
   }
 
   @Override
-  public User getUserById(String id) {
+  public User findById(String id) {
     return repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.USER_NOT_FOUND));
   }
 
   @Override
-  public void updateUser(User user) {
+  public UserDto.UserResponse getUserByUsername(String username) {
+    return UserDto.UserResponse.build(this.loadUserByUsername(username));
+  }
+
+  @Override
+  public UserDto.UserResponse getUserById(String id) {
+    return UserDto.UserResponse.build(this.findById(id));
+  }
+
+  @Override
+  public void update(User user) {
     repository.save(user);
   }
 }

@@ -5,4 +5,4 @@ import alkz.mscurriculum.model.ExperienceDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudDetailService;
 
 public interface IExperiencesService
-    extends IGenericCrudDetailService<String, String, ExperienceDto.Request, ExperienceDto.Response> {}
+    extends IGenericCrudDetailService<String, String, ExperienceDto.Request, ExperienceDto.Request, ExperienceDto.Response> {}

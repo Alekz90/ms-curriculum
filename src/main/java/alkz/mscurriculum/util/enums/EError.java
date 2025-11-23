@@ -31,7 +31,9 @@ public enum EError implements GenericEnum<String> {
   LANGUAGE_NOT_FOUND            ("0023", "Language not found for this professional detail."),
   LINK_NOT_FOUND                ("0024", "Link not found for this professional detail."),
   ABILITY_GROUP_NOT_FOUND       ("0025", "Ability group not found for this professional detail."),
-  ABILITY_NOT_FOUND             ("0026", "Ability not found for this professional detail."),;
+  ABILITY_NOT_FOUND             ("0026", "Ability not found for this professional detail."),
+  TERMS_NOT_ACCEPTED            ("0027", "Terms and conditions must be accepted."),
+  SUMMARY_NOT_FOUND             ("0028", "Summary not found for this professional detail."),;
 
   private final String id;
   private final String message;

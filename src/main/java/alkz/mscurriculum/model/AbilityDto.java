@@ -2,12 +2,9 @@ package alkz.mscurriculum.model;
 
 import alejdaf.commonutils.annotation.ValidIdentifier;
 import alejdaf.commonutils.annotation.ValidTittleText;
-import document.Ability;
+import alkz.mscurriculum.document.Ability;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 
 public class AbilityDto {
 
@@ -15,8 +12,17 @@ public class AbilityDto {
    * Request DTO for Ability
    */
   @Schema(name = "Ability.Request", description = "Ability Request DTO")
-  public record Request(
-      @NotBlank @ValidTittleText String name,
+  public record CreateRequest(
+      @NotBlank @ValidTittleText @Size(max = 100) String name,
+      @Digits(integer = 3, fraction = 2) @DecimalMin("0.1") @DecimalMax("100.00") Double percent) { }
+
+  /**
+   * Update DTO for Ability
+   */
+  @Schema(name = "Ability.UpdateRequest", description = "Ability Update Request DTO")
+  public record UpdateRequest(
+      @NotBlank @ValidIdentifier String id,
+      @NotBlank @ValidTittleText @Size(max = 100) String name,
       @Digits(integer = 3, fraction = 2) @DecimalMin("0.1") @DecimalMax("100.00") Double percent) { }
 
   /**

@@ -27,7 +27,7 @@ public class ExperiencesController {
 
   @PostMapping(V1_PATH + "/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<ExperienceDto.Response>> createExperience(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @Valid @RequestBody ExperienceDto.Request request) {
     ExperienceDto.Response response = service.create(detailId, request);
     return ResponseEntity
@@ -37,16 +37,16 @@ public class ExperiencesController {
 
   @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<ExperienceDto.Response>> updateExperience(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
       @Valid @RequestBody ExperienceDto.Request request) {
     return ResponseEntity.ok(new ResultDto<>(service.update(detailId, id, request)));
   }
 
   @DeleteMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<Void> deleteExperience(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String detailId,
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id) {
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
     service.delete(detailId, id);
     return ResponseEntity.noContent().build();
   }

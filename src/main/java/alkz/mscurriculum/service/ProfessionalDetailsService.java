@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import document.ProfessionalDetail;
+import alkz.mscurriculum.document.ProfessionalDetail;
 import alkz.mscurriculum.model.DetailDto;
 import alkz.mscurriculum.repository.ProfesionalDetailsRepository;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
@@ -18,26 +18,24 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
 
   /**
    * Create professional detail
-   * @param request ProfessionalDetailDto.Request
-   * @return ProfessionalDetailDto.Response
+   * @param userId User id
+   * @return ProfessionalDetail
    */
   @Override
-  public DetailDto.Response create(DetailDto.Request request) {
-    this.validateProfessionalDetailUnique(request.userId());
-    return DetailDto.Response.build(repository.save(ProfessionalDetail.build(request)));
+  public ProfessionalDetail create(String userId) {
+    this.validateProfessionalDetailUnique(userId);
+    return repository.save(ProfessionalDetail.emptyDetail(userId));
   }
 
   /**
    * Update professional detail
    * @param id Professional detail id
-   * @param request ProfessionalDetailDto.Request
-   * @return ProfessionalDetailDto.Response
+   * @param detail ProfessionalDetail
+   * @return ProfessionalDetail
    */
   @Override
-  public DetailDto.Response update(String id, DetailDto.Request request) {
-    ProfessionalDetail detail = this.findDetailById(id);
-    detail.update(request);
-    return DetailDto.Response.build(detail);
+  public ProfessionalDetail update(ProfessionalDetail detail) {
+    return repository.save(detail);
   }
 
   /**
@@ -46,8 +44,8 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
    * @return ProfessionalDetailDto.Response
    */
   @Override
-  public DetailDto.Response findById(String id) {
-    return DetailDto.Response.build(this.findDetailById(id));
+  public DetailDto.Response getDetailById(String id) {
+    return DetailDto.Response.build(this.findById(id));
   }
 
   /**
@@ -56,8 +54,8 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
    * @return ProfessionalDetailDto.Response
    */
   @Override
-  public DetailDto.Response findByIdUser(String userId) {
-    return DetailDto.Response.build(this.findDetailByIdUser(userId));
+  public DetailDto.Response getDetailByUserId(String userId) {
+    return DetailDto.Response.build(this.findByUserId(userId));
   }
 
   /**
@@ -66,7 +64,7 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
    * @return ProfessionalDetail
    */
   @Override
-  public ProfessionalDetail findDetailById(String id) {
+  public ProfessionalDetail findById(String id) {
     return repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.PROFESIONAL_DETAIL_NOT_FOUND));
   }
@@ -76,7 +74,8 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
    * @param userId User id
    * @return ProfessionalDetail
    */
-  private ProfessionalDetail findDetailByIdUser(String userId) {
+  @Override
+  public ProfessionalDetail findByUserId(String userId) {
     return repository.findByUserId(userId)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.PROFESIONAL_DETAIL_NOT_FOUND));
   }
@@ -88,10 +87,5 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
   private void validateProfessionalDetailUnique(String userId) {
     repository.findByUserId(userId)
         .ifPresent(pd -> {throw new CustomCommonException(HttpStatus.BAD_REQUEST, EError.PROFESIONAL_DETAIL_FOUND);});
-  }
-
-  @Override
-  public ProfessionalDetail updateDetailData(ProfessionalDetail professionalDetail) {
-    return repository.save(professionalDetail);
   }
 }
