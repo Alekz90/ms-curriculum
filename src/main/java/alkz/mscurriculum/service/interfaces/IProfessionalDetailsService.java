@@ -1,8 +1,7 @@
 package alkz.mscurriculum.service.interfaces;
 
 import alkz.mscurriculum.document.ProfessionalDetail;
-import alkz.mscurriculum.model.DetailDto;
-import alkz.mscurriculum.service.interfaces.generic.IGenericCrudService;
+import alkz.mscurriculum.dto.DetailDto;
 
 public interface IProfessionalDetailsService {
   ProfessionalDetail create(String userId);

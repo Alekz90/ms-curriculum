@@ -1,9 +1,10 @@
-package alkz.mscurriculum.model;
+package alkz.mscurriculum.dto;
 
 import alejdaf.commonutils.annotation.ValidSpecialText;
 import alejdaf.commonutils.annotation.ValidTittleText;
 import alkz.mscurriculum.document.ProfessionalExperience;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,7 +24,7 @@ public class ExperienceDto {
       LocalDate endDate,
       @NotNull Boolean stillWorking,
       @NotBlank @ValidSpecialText @Size(max = 2000) String activities,
-      @NotNull AddressDto.Request location) { }
+      @NotNull @Valid AddressDto.Request location) { }
 
   /**
    * Response DTO for ProfessionalExperience.

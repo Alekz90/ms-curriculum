@@ -3,7 +3,7 @@ package alkz.mscurriculum.controller;
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.util.CommonConstants;
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.model.LinkDto;
+import alkz.mscurriculum.dto.LinkDto;
 import alkz.mscurriculum.service.interfaces.ILinksService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

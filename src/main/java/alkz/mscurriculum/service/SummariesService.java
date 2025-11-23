@@ -4,7 +4,7 @@ import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.enums.ECommonError;
 import alkz.mscurriculum.document.ProfessionalDetail;
 import alkz.mscurriculum.document.Summary;
-import alkz.mscurriculum.model.SummaryDto;
+import alkz.mscurriculum.dto.SummaryDto;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import alkz.mscurriculum.service.interfaces.ISummariesService;
 import alkz.mscurriculum.util.enums.EError;

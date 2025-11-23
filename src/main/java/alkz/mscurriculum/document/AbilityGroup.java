@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alkz.mscurriculum.model.AbilityGroupDto;
+import alkz.mscurriculum.dto.AbilityGroupDto;
 import alkz.mscurriculum.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

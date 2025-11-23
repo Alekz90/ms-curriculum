@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import alkz.mscurriculum.model.EducationDto;
+import alkz.mscurriculum.dto.EducationDto;
 import alkz.mscurriculum.service.interfaces.IEducationsService;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import alkz.mscurriculum.util.enums.EError;

@@ -1,7 +1,7 @@
 package alkz.mscurriculum.document;
 
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.model.UserDto;
+import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.util.enums.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

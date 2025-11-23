@@ -2,7 +2,7 @@ package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.User;
-import alkz.mscurriculum.model.UserDto;
+import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.service.interfaces.IAuthenticationService;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import alkz.mscurriculum.service.interfaces.IUsersService;

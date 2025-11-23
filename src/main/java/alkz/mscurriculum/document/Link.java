@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alkz.mscurriculum.model.LinkDto;
+import alkz.mscurriculum.dto.LinkDto;
 import alkz.mscurriculum.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

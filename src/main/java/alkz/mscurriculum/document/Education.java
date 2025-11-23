@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alkz.mscurriculum.model.EducationDto;
+import alkz.mscurriculum.dto.EducationDto;
 import alkz.mscurriculum.util.Utils;
 import alkz.mscurriculum.util.enums.EEducationLevel;
 import lombok.AllArgsConstructor;

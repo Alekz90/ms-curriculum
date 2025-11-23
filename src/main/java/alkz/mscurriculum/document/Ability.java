@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alkz.mscurriculum.model.AbilityDto;
+import alkz.mscurriculum.dto.AbilityDto;
 import alkz.mscurriculum.util.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class Ability {
   @MongoId
   private String id;
   private String name;
-  private Double percent;
+  private Double percentage;
 
   /**
    * Build Ability from AbilityDto.CreateRequest
@@ -25,7 +25,7 @@ public class Ability {
    * @return Ability
    */
   public static Ability build(AbilityDto.CreateRequest request) {
-    return new Ability(Utils.generateObjectId(), request.name(), request.percent());
+    return new Ability(Utils.generateObjectId(), request.name(), request.percentage());
   }
 
   /**
@@ -34,6 +34,9 @@ public class Ability {
    * @return Ability
    */
   public static Ability build(AbilityDto.UpdateRequest request) {
-    return new Ability(request.id(), request.name(), request.percent());
+    if (request.id() == null) {
+      return new Ability(Utils.generateObjectId(), request.name(), request.percentage());
+    }
+    return new Ability(request.id(), request.name(), request.percentage());
   }
 }

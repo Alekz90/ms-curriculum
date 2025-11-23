@@ -1,4 +1,4 @@
-package alkz.mscurriculum.model;
+package alkz.mscurriculum.dto;
 
 import alkz.mscurriculum.document.*;
 import io.swagger.v3.oas.annotations.media.Schema;

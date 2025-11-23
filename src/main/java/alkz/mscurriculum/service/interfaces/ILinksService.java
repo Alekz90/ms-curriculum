@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.model.LinkDto;
+import alkz.mscurriculum.dto.LinkDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudDetailService;
 
 public interface ILinksService

@@ -1,7 +1,6 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.model.AddressDto;
-import alkz.mscurriculum.model.ExperienceDto;
+import alkz.mscurriculum.dto.ExperienceDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudDetailService;
 
 public interface IExperiencesService

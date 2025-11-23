@@ -2,11 +2,9 @@ package alkz.mscurriculum.controller;
 
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.util.CommonConstants;
-import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.model.DetailDto;
+import alkz.mscurriculum.dto.DetailDto;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

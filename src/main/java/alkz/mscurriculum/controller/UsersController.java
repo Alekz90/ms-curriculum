@@ -3,7 +3,7 @@ package alkz.mscurriculum.controller;
 import alejdaf.commonutils.annotation.ValidIdentifier;
 import alejdaf.commonutils.annotation.ValidUsername;
 import alejdaf.commonutils.dto.ResultDto;
-import alkz.mscurriculum.model.UserDto;
+import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

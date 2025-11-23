@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.model.SummaryDto;
+import alkz.mscurriculum.dto.SummaryDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudDetailService;
 
 public interface ISummariesService

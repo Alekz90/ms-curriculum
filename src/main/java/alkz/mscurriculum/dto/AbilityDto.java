@@ -1,4 +1,4 @@
-package alkz.mscurriculum.model;
+package alkz.mscurriculum.dto;
 
 import alejdaf.commonutils.annotation.ValidIdentifier;
 import alejdaf.commonutils.annotation.ValidTittleText;
@@ -14,22 +14,22 @@ public class AbilityDto {
   @Schema(name = "Ability.Request", description = "Ability Request DTO")
   public record CreateRequest(
       @NotBlank @ValidTittleText @Size(max = 100) String name,
-      @Digits(integer = 3, fraction = 2) @DecimalMin("0.1") @DecimalMax("100.00") Double percent) { }
+      @Digits(integer = 3, fraction = 2) @DecimalMin("0.0") @DecimalMax("100.00") Double percentage) { }
 
   /**
    * Update DTO for Ability
    */
   @Schema(name = "Ability.UpdateRequest", description = "Ability Update Request DTO")
   public record UpdateRequest(
-      @NotBlank @ValidIdentifier String id,
+      @ValidIdentifier String id,
       @NotBlank @ValidTittleText @Size(max = 100) String name,
-      @Digits(integer = 3, fraction = 2) @DecimalMin("0.1") @DecimalMax("100.00") Double percent) { }
+      @Digits(integer = 3, fraction = 2) @DecimalMin("0.0") @DecimalMax("100.00") Double percentage) { }
 
   /**
    * Response DTO for Ability
    */
   @Schema(name = "Ability.Response", description = "Ability Response DTO")
-  public record Response(String id, String name, Double percent) {
+  public record Response(String id, String name, Double percentage) {
 
     /**
      * Build AbilityDto.Response from Ability
@@ -37,7 +37,7 @@ public class AbilityDto {
      * @return AbilityDto.Response
      */
     public static Response build(Ability ability) {
-      return new Response(ability.getId(), ability.getName(), ability.getPercent());
+      return new Response(ability.getId(), ability.getName(), ability.getPercentage());
     }
   }
 }

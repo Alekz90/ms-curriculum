@@ -3,7 +3,7 @@ package alkz.mscurriculum.service;
 import alejdaf.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.Language;
 import alkz.mscurriculum.document.ProfessionalDetail;
-import alkz.mscurriculum.model.LanguageDto;
+import alkz.mscurriculum.dto.LanguageDto;
 import alkz.mscurriculum.service.interfaces.ILanguagesService;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
 import alkz.mscurriculum.util.enums.EError;

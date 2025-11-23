@@ -1,4 +1,4 @@
-package alkz.mscurriculum.model;
+package alkz.mscurriculum.dto;
 
 import alejdaf.commonutils.annotation.ValidTittleText;
 import alkz.mscurriculum.document.Education;

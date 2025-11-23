@@ -20,7 +20,6 @@ public final class PathConstants {
   public static final String EDUCATIONS           = "educations";
   public static final String EXPERIENCES          = "experiences";
   public static final String ABILITIES            = "abilities";
-  public static final String ABILITY_GROUPS       = "ability-groups";
   public static final String LINKS                = "links";
   public static final String LANGUAGES            = "languages";
   public static final String CERTIFICATIONS       = "certifications";

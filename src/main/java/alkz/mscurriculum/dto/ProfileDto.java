@@ -1,4 +1,4 @@
-package alkz.mscurriculum.model;
+package alkz.mscurriculum.dto;
 
 import alejdaf.commonutils.annotation.ValidCodePhone;
 import alejdaf.commonutils.annotation.ValidIdentifier;

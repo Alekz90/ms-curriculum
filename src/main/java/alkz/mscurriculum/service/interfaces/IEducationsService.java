@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.model.EducationDto;
+import alkz.mscurriculum.dto.EducationDto;
 import alkz.mscurriculum.service.interfaces.generic.IGenericCrudDetailService;
 
 public interface IEducationsService

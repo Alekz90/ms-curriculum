@@ -3,7 +3,7 @@ package alkz.mscurriculum.controller;
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.util.CommonConstants;
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.model.AbilityGroupDto;
+import alkz.mscurriculum.dto.AbilityGroupDto;
 import alkz.mscurriculum.service.interfaces.IAbilityGroupsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ import static alkz.mscurriculum.util.PathConstants.*;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(ABILITY_GROUPS)
+@RequestMapping(ABILITIES)
 @Tag(name = "Ability Groups", description = "Endpoints for managing ability groups in professional details")
 public class AbilityGroupsController {
 
@@ -30,7 +30,7 @@ public class AbilityGroupsController {
       @Valid @RequestBody AbilityGroupDto.CreateRequest request) {
     AbilityGroupDto.Response response = service.create(detailId, request);
     return ResponseEntity
-        .created(CommonUtils.buildUriPost(ABILITY_GROUPS + V1_PATH, response.id()))
+        .created(CommonUtils.buildUriPost(ABILITIES + V1_PATH, response.id()))
         .body(new ResultDto<>(response));
   }
 
