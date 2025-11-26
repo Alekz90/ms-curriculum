@@ -29,7 +29,6 @@ public class ProfessionalDetailsService implements IProfessionalDetailsService {
 
   /**
    * Update professional detail
-   * @param id Professional detail id
    * @param detail ProfessionalDetail
    * @return ProfessionalDetail
    */

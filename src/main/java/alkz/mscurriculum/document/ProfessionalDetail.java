@@ -21,7 +21,6 @@ public class ProfessionalDetail {
   private String id;
   private String userId;
   private Summary summary;
-  private Address address;
   private List<ProfessionalExperience> experiences;
   private List<Language> languages;
   private List<AbilityGroup> abilityGroups;
@@ -29,6 +28,11 @@ public class ProfessionalDetail {
   private List<Certification> certifications;
   private List<Link> links;
 
+  /**
+   * Create an empty professional detail for a user
+   * @param userId User id
+   * @return ProfessionalDetail
+   */
   public static ProfessionalDetail emptyDetail(String userId) {
     return ProfessionalDetail.builder()
         .userId(userId)
@@ -47,7 +51,6 @@ public class ProfessionalDetail {
    */
   public void update(ProfessionalDetail detail) {
     this.summary = detail.getSummary();
-    this.address = detail.getAddress();
     this.experiences = detail.getExperiences();
     this.languages = detail.getLanguages();
     this.abilityGroups = detail.getAbilityGroups();

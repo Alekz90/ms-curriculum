@@ -3,10 +3,7 @@ package alkz.mscurriculum.service;
 import alejdaf.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.dto.UserDto;
-import alkz.mscurriculum.service.interfaces.IAuthenticationService;
-import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
-import alkz.mscurriculum.service.interfaces.IUsersService;
-import alkz.mscurriculum.service.interfaces.IVerificationsService;
+import alkz.mscurriculum.service.interfaces.*;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements IAuthenticationService {
 
   private final IUsersService usersService;
+  private final IProfilesService profilesService;
   private final IProfessionalDetailsService professionalDetailsService;
   private final IVerificationsService verificationsService;
   private final PasswordEncoder passwordEncoder;
@@ -33,6 +31,7 @@ public class AuthenticationService implements IAuthenticationService {
     }
 
     User user = usersService.save(request, passwordEncoder.encode(request.password()));
+    profilesService.create(user.getId());
     professionalDetailsService.create(user.getId());
     verificationsService.create(user.getId());
     //TODO: Send verification email

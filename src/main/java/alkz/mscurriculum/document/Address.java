@@ -22,6 +22,20 @@ public class Address {
   private Boolean showInCurriculum;
 
   /**
+   * Create an empty Address
+   * @return Address
+   */
+  public static Address emptyAddress() {
+    return Address.builder()
+        .id(Utils.generateObjectId())
+        .country("")
+        .state("")
+        .city("")
+        .showInCurriculum(false)
+        .build();
+  }
+
+  /**
    * Build Address from AddressDto.Request
    * @param request AddressDto.Request
    * @return Address

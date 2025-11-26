@@ -25,22 +25,21 @@ public class AddressController {
 
   private final IAddressService service;
 
-  @PostMapping(V1_PATH)
+  @PostMapping(V1_PATH + "/profiles/{profileId}")
   public ResponseEntity<ResultDto<AddressDto.Response>> createAddress(
-      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String idDetail,
-      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String profileId,
       @Valid @RequestBody AddressDto.Request request) {
-    AddressDto.Response response = service.create(idDetail, request);
+    AddressDto.Response response = service.create(profileId, request);
     return ResponseEntity
         .created(CommonUtils.buildUriPost(ADDRESS + V1_PATH, response.id()))
         .body(new ResultDto<>(response));
   }
 
-  @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
+  @PutMapping(V1_PATH + "/{id}/profiles/{profileId}")
   public ResponseEntity<ResultDto<AddressDto.Response>> updateAddress(
-      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String idDetail,
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String profileId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
       @Valid @RequestBody AddressDto.Request request) {
-    return ResponseEntity.ok(new ResultDto<>(service.update(idDetail, id, request)));
+    return ResponseEntity.ok(new ResultDto<>(service.update(profileId, id, request)));
   }
 }

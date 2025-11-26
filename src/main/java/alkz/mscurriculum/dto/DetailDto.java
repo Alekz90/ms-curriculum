@@ -11,7 +11,7 @@ public class DetailDto {
    * Response DTO for ProfessionalDetail
    */
   @Schema(name = "ProfessionalDetailDto.Response", description = "DTO for ProfessionalDetail")
-  public record Response(String id, String userId, Summary summary, Address address,
+  public record Response(String id, String userId, Summary summary,
       List<ExperienceDto.Response>experiences,
       List<LanguageDto.Response> languages,
       List<AbilityGroupDto.Response> abilityGroups,
@@ -28,7 +28,6 @@ public class DetailDto {
           detail.getId(),
           detail.getUserId(),
           detail.getSummary(),
-          detail.getAddress(),
           detail.getExperiences().stream().map(ExperienceDto.Response::build).toList(),
           detail.getLanguages().stream().map(LanguageDto.Response::build).toList(),
           detail.getAbilityGroups().stream().map(AbilityGroupDto.Response::build).toList(),

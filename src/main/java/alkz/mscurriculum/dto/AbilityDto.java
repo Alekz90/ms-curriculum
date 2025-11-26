@@ -14,7 +14,7 @@ public class AbilityDto {
   @Schema(name = "Ability.Request", description = "Ability Request DTO")
   public record CreateRequest(
       @NotBlank @ValidTittleText @Size(max = 100) String name,
-      @Digits(integer = 3, fraction = 2) @DecimalMin("0.0") @DecimalMax("100.00") Double percentage) { }
+      @Digits(integer = 3, fraction = 2) @DecimalMin("0.0a") @DecimalMax("100.00") Double percentage) { }
 
   /**
    * Update DTO for Ability

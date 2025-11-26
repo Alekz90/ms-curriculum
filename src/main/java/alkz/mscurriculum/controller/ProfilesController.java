@@ -28,22 +28,23 @@ public class ProfilesController {
   @GetMapping(V1_PATH + "/{id}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileById(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
-    return ResponseEntity.ok(new ResultDto<>(service.findById(id)));
+    return ResponseEntity.ok(new ResultDto<>(service.getById(id)));
   }
 
   @GetMapping(V1_PATH + "/users/{userId}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileByUserId(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId) {
-    return ResponseEntity.ok(new ResultDto<>(service.findByIdUser(userId)));
+    return ResponseEntity.ok(new ResultDto<>(service.getByUserId(userId)));
   }
 
-  @PostMapping(V1_PATH)
+  @PostMapping(V1_PATH + "/users/{userId}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> createProfile(
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId,
       @Valid @RequestBody ProfileDto.Request request) {
-    ProfileDto.Response response = service.create(request);
+    ProfileDto.Response response = service.create(userId, request);
     return ResponseEntity
         .created(CommonUtils.buildUriPost(PROFILES + V1_PATH, response.id()))
-        .body(new ResultDto<>());
+        .body(new ResultDto<>(response));
   }
 
   @PutMapping(V1_PATH + "/{id}")
