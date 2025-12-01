@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Document(collection = "ProfessionalExperiences")
 public class ProfessionalExperience {
 
   @MongoId

@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Document(collection = "Languages")
 public class Language {
 
   @MongoId

@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Document(collection = "AbilityGroups")
 public class AbilityGroup {
 
   @MongoId

@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static alkz.mscurriculum.util.PathConstants.RECOVERIES;
@@ -24,9 +24,9 @@ public class RecoveriesController {
 
   private final IUsersService service;
 
-  @GetMapping(V1_PATH + "/{email}/send-recovery-password")
+  @GetMapping(V1_PATH + "/send-recovery-password")
   public ResponseEntity<Void> sendRecoverPassword(
-      @PathVariable @Pattern(regexp = CommonConstants.EMAIL_PATTERN) String email) {
+      @RequestParam @Pattern(regexp = CommonConstants.EMAIL_PATTERN) String email) {
     //TODO: Implement email sending with new password
     return ResponseEntity.noContent().build();
   }

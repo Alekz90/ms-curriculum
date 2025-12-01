@@ -26,6 +26,7 @@ public class Profile {
   private String cellphone;
   private String fullName;
   private Address address;
+  private Image image;
 
   /**
    * Create an empty profile for a user
@@ -40,6 +41,7 @@ public class Profile {
         .cellphone("")
         .fullName("")
         .address(Address.emptyAddress())
+        .image(Image.emptyImage())
         .build();
   }
 
@@ -72,4 +74,3 @@ public class Profile {
     return profile;
   }
 }
-

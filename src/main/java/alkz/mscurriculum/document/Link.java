@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Document(collection = "Links")
 public class Link {
 
   @MongoId

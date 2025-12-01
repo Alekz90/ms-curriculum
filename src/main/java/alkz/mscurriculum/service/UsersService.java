@@ -8,14 +8,15 @@ import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UsersService implements IUsersService {
 
+  private final PasswordEncoder passwordEncoder;
   private final UsersRepository repository;
-  //private final PasswordEncoder passwordEncoder;
 
   @Override
   public User loadUserByUsername(String username) {
@@ -24,13 +25,15 @@ public class UsersService implements IUsersService {
   }
 
   @Override
-  public User save(UserDto.Register userDto, String encodedPassword) {
+  public User save(UserDto.Register userDto) {
     if (repository.existsByUsername(userDto.username())) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.USERNAME_FOUND);
     }
     if (repository.existsByEmail(userDto.email())) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.EMAIL_FOUND);
     }
+
+    String encodedPassword = passwordEncoder.encode(userDto.password());
 
     return repository.save(User.build(userDto, encodedPassword));
   }
@@ -39,6 +42,16 @@ public class UsersService implements IUsersService {
   public User findById(String id) {
     return repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.USER_NOT_FOUND));
+  }
+
+  @Override
+  public void changePassword(String id, UserDto.ChangePassword request) {
+    User user = this.findById(id);
+    if (!passwordEncoder.matches(request.oldPassword(), user.getPassword())) {
+      throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
+    }
+    user.setPassword(passwordEncoder.encode(request.newPassword()));
+    //this.update(user);
   }
 
   @Override

@@ -38,6 +38,10 @@ public class SecurityConfiguration {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
         .csrf(AbstractHttpConfigurer::disable)
+        .headers(headers -> headers
+            .contentSecurityPolicy(csp -> csp
+                .policyDirectives("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'")
+            ))
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(WHITELIST).permitAll()

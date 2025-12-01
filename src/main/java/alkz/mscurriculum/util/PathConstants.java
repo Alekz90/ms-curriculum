@@ -17,6 +17,7 @@ public final class PathConstants {
   public static final String PROFESSIONAL_DETAILS = "professional-details";
   public static final String PROFILES             = "profiles";
   public static final String ADDRESS              = "address";
+  public static final String IMAGES               = "images";
   public static final String EDUCATIONS           = "educations";
   public static final String EXPERIENCES          = "experiences";
   public static final String ABILITIES            = "abilities";
@@ -33,7 +34,8 @@ public final class PathConstants {
       "/v3/api-docs",
       "/swagger-ui/**",
       SLASH + AUTHENTICATIONS + PUBLIC_V1_PATH + SLASH_ALL,
-      SLASH + VERIFICATIONS + SLASH_ALL
+      SLASH + VERIFICATIONS + SLASH_ALL,
+      SLASH + RECOVERIES + SLASH_ALL
   };
   public static final List<String> WHITELIST_PATTERNS = Utils.convertPatterEndpoints(WHITELIST);
 
