@@ -2,47 +2,49 @@ package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
 import alejdaf.commonutils.util.enums.ECommonError;
-import document.Address;
-import document.ProfessionalDetail;
-import alkz.mscurriculum.model.AddressDto;
+import alkz.mscurriculum.document.Address;
+import alkz.mscurriculum.document.Profile;
+import alkz.mscurriculum.dto.AddressDto;
 import alkz.mscurriculum.service.interfaces.IAddressService;
-import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;
+import alkz.mscurriculum.service.interfaces.IProfilesService;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class AddressService implements IAddressService {
 
-  private final IProfessionalDetailsService detailsService;
+  private final IProfilesService profilesService;
 
   @Override
-  public AddressDto.Response create(String detailId, AddressDto.Request request) {
-    ProfessionalDetail detail =  detailsService.findDetailById(detailId);
-    if (Objects.nonNull(detail.getAddress())) {
+  public AddressDto.Response create(String profileId, AddressDto.Request request) {
+    Profile profile =  profilesService.findById(profileId);
+
+    if (Objects.nonNull(profile.getAddress())) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.ADDRESS_FOUND);
     }
-    detail.setAddress(Address.build(request));
-    return AddressDto.Response.build(detailsService.updateDetailData(detail).getAddress());
+    profile.setAddress(Address.build(request));
+    return AddressDto.Response.build(profilesService.update(profile).getAddress());
   }
 
   @Override
-  public AddressDto.Response update(String detailId, String id, AddressDto.Request request) {
-    ProfessionalDetail detail =  detailsService.findDetailById(detailId);
-    if (Objects.isNull(detail.getAddress()) || !id.equals(detail.getAddress().getId())) {
+  public AddressDto.Response update(String profileId, String id, AddressDto.Request request) {
+    Profile profile =  profilesService.findById(profileId);
+    if (Objects.isNull(profile.getAddress()) || !id.equals(profile.getAddress().getId())) {
       throw new CustomCommonException(HttpStatus.NOT_FOUND, EError.ADDRESS_NOT_FOUND);
     }
-    detail.getAddress().update(request);
-    detailsService.updateDetailData(detail);
-    return AddressDto.Response.build(detail.getAddress());
+    profile.getAddress().update(request);
+    profilesService.update(profile);
+    return AddressDto.Response.build(profile.getAddress());
   }
 
   @Override
-  public void delete(String detailId, String id) {
+  public void delete(String profileId, String id) {
     throw new CustomCommonException(HttpStatus.NOT_IMPLEMENTED, ECommonError.METHOD_NOT_IMPLEMENTED);
   }
 }

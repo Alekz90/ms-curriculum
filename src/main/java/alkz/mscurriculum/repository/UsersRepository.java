@@ -1,6 +1,6 @@
 package alkz.mscurriculum.repository;
 
-import document.User;
+import alkz.mscurriculum.document.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

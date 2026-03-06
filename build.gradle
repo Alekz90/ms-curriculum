@@ -21,9 +21,10 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
 	mavenCentral()
     maven {
-        url uri('../../real/repo') // o tu repositorio remoto
+        url uri("${rootProject.projectDir}/repo")  // o tu repositorio remoto
     }
 }
 

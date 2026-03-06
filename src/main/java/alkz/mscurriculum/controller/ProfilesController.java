@@ -3,7 +3,7 @@ package alkz.mscurriculum.controller;
 import alejdaf.commonutils.dto.ResultDto;
 import alejdaf.commonutils.util.CommonConstants;
 import alejdaf.commonutils.util.CommonUtils;
-import alkz.mscurriculum.model.ProfileDto;
+import alkz.mscurriculum.dto.ProfileDto;
 import alkz.mscurriculum.service.interfaces.IProfilesService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static alkz.mscurriculum.util.PathConstants.PROFILES;
-import static alkz.mscurriculum.util.PathConstants.V1_PATH;
+import static alkz.mscurriculum.util.PathConstants.V1;
 
 @Validated
 @RestController
@@ -25,28 +25,29 @@ public class ProfilesController {
 
   private final IProfilesService service;
 
-  @GetMapping(V1_PATH + "/{id}")
+  @GetMapping(V1 + "/{id}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileById(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id) {
-    return ResponseEntity.ok(new ResultDto<>(service.findById(id)));
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
+    return ResponseEntity.ok(new ResultDto<>(service.getById(id)));
   }
 
-  @GetMapping(V1_PATH + "/users/{userId}")
+  @GetMapping(V1 + "/users/{userId}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> getProfileByUserId(
-      @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String userId) {
-    return ResponseEntity.ok(new ResultDto<>(service.findByIdUser(userId)));
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId) {
+    return ResponseEntity.ok(new ResultDto<>(service.getByUserId(userId)));
   }
 
-  @PostMapping(V1_PATH)
+  @PostMapping(V1 + "/users/{userId}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> createProfile(
+      @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId,
       @Valid @RequestBody ProfileDto.Request request) {
-    ProfileDto.Response response = service.create(request);
+    ProfileDto.Response response = service.create(userId, request);
     return ResponseEntity
-        .created(CommonUtils.buildUriPost(PROFILES + V1_PATH, response.id()))
-        .body(new ResultDto<>());
+        .created(CommonUtils.buildUriPost(PROFILES + V1, response.id()))
+        .body(new ResultDto<>(response));
   }
 
-  @PutMapping(V1_PATH + "/{id}")
+  @PutMapping(V1 + "/{id}")
   public ResponseEntity<ResultDto<ProfileDto.Response>> updateProfile(
       @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) @PathVariable String id,
       @Valid @RequestBody ProfileDto.Request request) {

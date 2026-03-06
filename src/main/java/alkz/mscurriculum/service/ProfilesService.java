@@ -1,14 +1,16 @@
 package alkz.mscurriculum.service;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import document.Profile;
-import alkz.mscurriculum.model.ProfileDto;
+import alkz.mscurriculum.document.Profile;
+import alkz.mscurriculum.dto.ProfileDto;
 import alkz.mscurriculum.repository.ProfilesRepository;
 import alkz.mscurriculum.service.interfaces.IProfilesService;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -17,15 +19,27 @@ public class ProfilesService implements IProfilesService {
   private final ProfilesRepository repository;
 
   /**
+   * Create empty profile
+   * @param userId User id
+   * @return Profile
+   */
+  @Override
+  public Profile create(String userId) {
+    this.validateProfileUnique(userId);
+    return repository.save(Profile.emptyProfile(userId));
+  }
+
+  /**
    * Create profile
+   * @param userId User id
    * @param request ProfileDto.Request
    * @return ProfileDto.Response
    */
   @Override
-  public ProfileDto.Response create(ProfileDto.Request request) {
-    this.validateProfileUnique(request.userId());
+  public ProfileDto.Response create(String userId, ProfileDto.Request request) {
+    this.validateProfileUnique(userId);
     this.validatePhoneUnique(request.codePhone(), request.cellphone());
-    return ProfileDto.Response.build(repository.save(Profile.build(request)));
+    return ProfileDto.Response.build(repository.save(Profile.build(userId, request)));
   }
 
   /**
@@ -36,7 +50,7 @@ public class ProfilesService implements IProfilesService {
    */
   @Override
   public ProfileDto.Response update(String id, ProfileDto.Request request) {
-    Profile profile = this.findProfileById(id);
+    Profile profile = this.findById(id);
 
     if (!profile.getCodePhone().equals(request.codePhone() ) || !profile.getCellphone().equals(request.cellphone())) {
       this.validatePhoneUnique(request.codePhone(), request.cellphone());
@@ -51,8 +65,8 @@ public class ProfilesService implements IProfilesService {
    * @return ProfileDto.Response
    */
   @Override
-  public ProfileDto.Response findById(String id) {
-    return ProfileDto.Response.build(this.findProfileById(id));
+  public ProfileDto.Response getById(String id) {
+    return ProfileDto.Response.build(this.findById(id));
   }
 
   /**
@@ -61,8 +75,8 @@ public class ProfilesService implements IProfilesService {
    * @return ProfileDto.Response
    */
   @Override
-  public ProfileDto.Response findByIdUser(String userId) {
-    return ProfileDto.Response.build(this.findProfileByIdUser(userId));
+  public ProfileDto.Response getByUserId(String userId) {
+    return ProfileDto.Response.build(this.findByIdUser(userId));
   }
 
   /**
@@ -70,7 +84,7 @@ public class ProfilesService implements IProfilesService {
    * @param id Profile id
    * @return Profile
    */
-  private Profile findProfileById(String id) {
+  public Profile findById(String id) {
     return repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.PROFILE_NOT_FOUND));
   }
@@ -80,9 +94,18 @@ public class ProfilesService implements IProfilesService {
    * @param userId User id
    * @return Profile
    */
-  private Profile findProfileByIdUser(String userId) {
+  public Profile findByIdUser(String userId) {
     return repository.findByUserId(userId)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.PROFILE_NOT_FOUND));
+  }
+
+  /**
+   * Save profile
+   * @param profile Profile
+   * @return Profile
+   */
+  public Profile update(Profile profile) {
+    return repository.save(profile);
   }
 
   /**
