@@ -9,6 +9,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -58,7 +59,7 @@ public class JwtService {
     return this.getClaim(token, claims ->  claims.get(claimName, String.class));
   }
 
-  public boolean isInvalidToken(String token, User user) {
+  public boolean isInvalidToken(String token, UserDetails user) {
     return !user.getUsername().equals(this.getUsernameFromToken(token))
         || !BooleanUtils.isFalse(isTokenExpired(token));
   }

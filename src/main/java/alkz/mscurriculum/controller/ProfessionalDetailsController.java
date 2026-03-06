@@ -12,7 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static alkz.mscurriculum.util.PathConstants.PROFESSIONAL_DETAILS;
-import static alkz.mscurriculum.util.PathConstants.V1_PATH;
+import static alkz.mscurriculum.util.PathConstants.V1;
 
 @Validated
 @RestController
@@ -23,13 +23,13 @@ public class ProfessionalDetailsController {
 
   private final IProfessionalDetailsService service;
 
-  @GetMapping(V1_PATH + "/{id}")
+  @GetMapping(V1 + "/{id}")
   public ResponseEntity<ResultDto<DetailDto.Response>> getProfessionalDetailById(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
     return ResponseEntity.ok(new ResultDto<>(service.getDetailById(id)));
   }
 
-  @GetMapping(V1_PATH + "/users/{userId}")
+  @GetMapping(V1 + "/users/{userId}")
   public ResponseEntity<ResultDto<DetailDto.Response>> getProfessionalDetailByUserId(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String userId) {
     return ResponseEntity.ok(new ResultDto<>(service.getDetailByUserId(userId)));

@@ -19,12 +19,6 @@ public class UsersService implements IUsersService {
   private final UsersRepository repository;
 
   @Override
-  public User loadUserByUsername(String username) {
-    return repository.findByUsername(username)
-        .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.USER_NOT_FOUND));
-  }
-
-  @Override
   public User save(UserDto.Register userDto) {
     if (repository.existsByUsername(userDto.username())) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.USERNAME_FOUND);
@@ -33,9 +27,10 @@ public class UsersService implements IUsersService {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.EMAIL_FOUND);
     }
 
-    String encodedPassword = passwordEncoder.encode(userDto.password());
+    User entity = User.build(userDto);
+    entity.setPassword(passwordEncoder.encode(userDto.password()));
 
-    return repository.save(User.build(userDto, encodedPassword));
+    return repository.save(entity);
   }
 
   @Override
@@ -51,17 +46,36 @@ public class UsersService implements IUsersService {
       throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
     }
     user.setPassword(passwordEncoder.encode(request.newPassword()));
-    //this.update(user);
+    this.update(user);
+  }
+
+  @Override
+  public void recoveryPassword(String id, UserDto.RecoveryPassword request) {
+    User user = this.findById(id);
+    user.setPassword(passwordEncoder.encode(request.newPassword()));
+    this.update(user);
   }
 
   @Override
   public UserDto.UserResponse getUserByUsername(String username) {
-    return UserDto.UserResponse.build(this.loadUserByUsername(username));
+    return UserDto.UserResponse.build(this.findByUsername(username));
   }
 
   @Override
   public UserDto.UserResponse getUserById(String id) {
     return UserDto.UserResponse.build(this.findById(id));
+  }
+
+  @Override
+  public User findByEmail(String email) {
+    return repository.findByEmail(email)
+        .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.USER_NOT_FOUND));
+  }
+
+  @Override
+  public User findByUsername(String username) {
+    return repository.findByUsername(username)
+        .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.USER_NOT_FOUND));
   }
 
   @Override

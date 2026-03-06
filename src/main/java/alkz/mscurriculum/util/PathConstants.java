@@ -26,14 +26,16 @@ public final class PathConstants {
   public static final String CERTIFICATIONS       = "certifications";
   public static final String SUMMARIES            = "summaries";
 
-  public static final String V1_PATH = "/v1";
-  public static final String PUBLIC_V1_PATH = V1_PATH + "/public";
+  public static final String V1 = "/v1";
+  public static final String REGISTER = "/register";
+  public static final String LOGIN = "/login";
 
   public static final String[] WHITELIST = {
       "/v3/api-docs/**",
       "/v3/api-docs",
       "/swagger-ui/**",
-      SLASH + AUTHENTICATIONS + PUBLIC_V1_PATH + SLASH_ALL,
+      SLASH + AUTHENTICATIONS + V1 + REGISTER,
+      SLASH + AUTHENTICATIONS + V1 + LOGIN,
       SLASH + VERIFICATIONS + SLASH_ALL,
       SLASH + RECOVERIES + SLASH_ALL
   };

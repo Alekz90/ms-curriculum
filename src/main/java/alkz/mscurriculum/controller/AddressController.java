@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static alkz.mscurriculum.util.PathConstants.ADDRESS;
-import static alkz.mscurriculum.util.PathConstants.V1_PATH;
+import static alkz.mscurriculum.util.PathConstants.V1;
 
 @Validated
 @RestController
@@ -25,17 +25,17 @@ public class AddressController {
 
   private final IAddressService service;
 
-  @PostMapping(V1_PATH + "/profiles/{profileId}")
+  @PostMapping(V1 + "/profiles/{profileId}")
   public ResponseEntity<ResultDto<AddressDto.Response>> createAddress(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String profileId,
       @Valid @RequestBody AddressDto.Request request) {
     AddressDto.Response response = service.create(profileId, request);
     return ResponseEntity
-        .created(CommonUtils.buildUriPost(ADDRESS + V1_PATH, response.id()))
+        .created(CommonUtils.buildUriPost(ADDRESS + V1, response.id()))
         .body(new ResultDto<>(response));
   }
 
-  @PutMapping(V1_PATH + "/{id}/profiles/{profileId}")
+  @PutMapping(V1 + "/{id}/profiles/{profileId}")
   public ResponseEntity<ResultDto<AddressDto.Response>> updateAddress(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String profileId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,

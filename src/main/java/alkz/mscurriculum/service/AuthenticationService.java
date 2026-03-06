@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +19,6 @@ public class AuthenticationService implements IAuthenticationService {
   private final IProfilesService profilesService;
   private final IProfessionalDetailsService professionalDetailsService;
   private final IVerificationsService verificationsService;
-  private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
@@ -30,7 +28,7 @@ public class AuthenticationService implements IAuthenticationService {
       throw new CustomCommonException(HttpStatus.BAD_REQUEST, EError.TERMS_NOT_ACCEPTED);
     }
 
-    User user = usersService.save(request, passwordEncoder.encode(request.password()));
+    User user = usersService.save(request);
     profilesService.create(user.getId());
     professionalDetailsService.create(user.getId());
     verificationsService.create(user.getId());
@@ -46,33 +44,16 @@ public class AuthenticationService implements IAuthenticationService {
     } catch (Exception e) {
       throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.WRONG_CREDENTIALS);
     }
-    User user = usersService.loadUserByUsername(request.username());
+    User user = usersService.findByUsername(request.username());
     String token = jwtService.generateToken(user);
     return UserDto.Authentication.build(token, user);
-  }
-
-  @Override
-  public void changePassword(String id, UserDto.ChangePassword request) {
-    User user = usersService.findById(id);
-    if (!passwordEncoder.matches(request.oldPassword(), user.getPassword())) {
-      throw new CustomCommonException(HttpStatus.UNAUTHORIZED, EError.INVALID_OLD_PASSWORD);
-    }
-    user.setPassword(passwordEncoder.encode(request.newPassword()));
-    usersService.update(user);
-  }
-
-  @Override
-  public void recoveryPassword(String id, UserDto.RecoveryPassword request) {
-    User user = usersService.findById(id);
-    user.setPassword(passwordEncoder.encode(request.newPassword()));
-    usersService.update(user);
   }
 
   @Override
   public UserDto.Authentication checkStatus(String tokenHeader) {
     String token =  tokenHeader.replace("Bearer ", "");
     String username = jwtService.getUsernameFromToken(token);
-    User user = usersService.loadUserByUsername(username);
+    User user = usersService.findByUsername(username);
     if (jwtService.isInvalidToken(token, user)) {
       throw new CustomCommonException(HttpStatus.FORBIDDEN, EError.USER_FORBIDDEN);
     }

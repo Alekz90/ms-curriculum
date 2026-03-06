@@ -39,10 +39,15 @@ public class User implements UserDetails {
     return List.of(new SimpleGrantedAuthority(role.name()));
   }
 
-  public static User build(UserDto.Register userDto, String encodedPassword) {
+  /**
+   * Build a new User from UserDto.Register
+   * @param userDto UserDto.Register
+   * @return User
+   */
+  public static User build(UserDto.Register userDto) {
     return User.builder()
         .username(userDto.username())
-        .password(encodedPassword)
+        .password(userDto.password())
         .email(userDto.email())
         .active(true)
         .creationDate(CommonUtils.getCurrentLocalDateTime())

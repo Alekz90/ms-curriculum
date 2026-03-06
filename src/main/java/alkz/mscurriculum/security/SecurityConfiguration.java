@@ -1,9 +1,10 @@
 package alkz.mscurriculum.security;
 
 import alejdaf.commonutils.exception.CustomCommonException;
-import alkz.mscurriculum.service.interfaces.IUsersService;
+import alkz.mscurriculum.service.JwtService;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,15 @@ import static alkz.mscurriculum.util.PathConstants.WHITELIST;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-  private final IUsersService userDetailsService;
-  private final JwtAuthenticationFilter jwtAuthFilter;
+  @Value("#{'${cors-configuration.allowed-origins}'.split(', ')}")
+  List<String> allowedOrigins;
+  @Value("#{'${cors-configuration.allowed-methods}'.split(', ')}")
+  List<String> allowedMethods;
+  @Value("#{'${cors-configuration.allowed-headers}'.split(', ')}")
+  List<String> allowedHeaders;
+
+  private final UserDetailsService userDetailsService;
+  private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -51,16 +59,16 @@ public class SecurityConfiguration {
             session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )
         .authenticationProvider(authenticationProvider())
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-    configuration.setAllowedHeaders(List.of("*"));
+    configuration.setAllowedOrigins(allowedOrigins);
+    configuration.setAllowedMethods(allowedMethods);
+    configuration.setAllowedHeaders(allowedHeaders);
     configuration.setAllowCredentials(true);
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

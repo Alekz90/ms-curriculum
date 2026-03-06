@@ -1,8 +1,8 @@
 package alkz.mscurriculum.service.interfaces;
 
-import alkz.mscurriculum.document.Verification;
+import alkz.mscurriculum.dto.UserDto;
 
 public interface IRecoveriesService {
-  Verification create(String userId);
-  void markRecoveryAsUsed(String id, String newPassword);
+  void sendingRecoveryPassword(String email);
+  void recoveryPassword(String id, UserDto.RecoveryPassword request);
 }

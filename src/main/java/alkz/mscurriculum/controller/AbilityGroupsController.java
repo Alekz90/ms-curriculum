@@ -24,17 +24,17 @@ public class AbilityGroupsController {
 
   private final IAbilityGroupsService service;
 
-  @PostMapping(V1_PATH + "/profesional-details/{detailId}")
+  @PostMapping(V1 + "/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<AbilityGroupDto.Response>> createAbilityGroup(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @Valid @RequestBody AbilityGroupDto.CreateRequest request) {
     AbilityGroupDto.Response response = service.create(detailId, request);
     return ResponseEntity
-        .created(CommonUtils.buildUriPost(ABILITIES + V1_PATH, response.id()))
+        .created(CommonUtils.buildUriPost(ABILITIES + V1, response.id()))
         .body(new ResultDto<>(response));
   }
 
-  @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
+  @PutMapping(V1 + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<AbilityGroupDto.Response>> updateAbilityGroup(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
@@ -42,7 +42,7 @@ public class AbilityGroupsController {
     return ResponseEntity.ok(new ResultDto<>(service.update(detailId, id, request)));
   }
 
-  @DeleteMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
+  @DeleteMapping(V1 + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<Void> deleteAbilityGroup(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {

@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static alkz.mscurriculum.util.PathConstants.SUMMARIES;
-import static alkz.mscurriculum.util.PathConstants.V1_PATH;
+import static alkz.mscurriculum.util.PathConstants.V1;
 
 @Validated
 @RestController
@@ -25,17 +25,17 @@ public class SummariesController {
 
   private final ISummariesService service;
 
-  @PostMapping(V1_PATH + "/profesional-details/{detailId}")
+  @PostMapping(V1 + "/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<SummaryDto.Response>> createSummary(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @Valid @RequestBody SummaryDto.Request request) {
     SummaryDto.Response response = service.create(detailId, request);
     return ResponseEntity
-        .created(CommonUtils.buildUriPost(SUMMARIES + V1_PATH, response.id()))
+        .created(CommonUtils.buildUriPost(SUMMARIES + V1, response.id()))
         .body(new ResultDto<>(response));
   }
 
-  @PutMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
+  @PutMapping(V1 + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<ResultDto<SummaryDto.Response>> updateSummary(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id,
@@ -43,7 +43,7 @@ public class SummariesController {
     return ResponseEntity.ok(new ResultDto<>(service.update(detailId, id, request)));
   }
 
-  @DeleteMapping(V1_PATH + "/{id}/profesional-details/{detailId}")
+  @DeleteMapping(V1 + "/{id}/profesional-details/{detailId}")
   public ResponseEntity<Void> deleteSummary(
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String detailId,
       @PathVariable @Pattern(regexp = CommonConstants.IDENTIFIER_PATTERN) String id) {
