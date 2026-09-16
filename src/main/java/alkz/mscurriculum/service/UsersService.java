@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
+import akz.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.repository.UsersRepository;

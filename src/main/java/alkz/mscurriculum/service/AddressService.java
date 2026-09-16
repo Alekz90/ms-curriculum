@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.enums.ECommonError;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.enums.ECommonError;
 import alkz.mscurriculum.document.Address;
 import alkz.mscurriculum.document.Profile;
 import alkz.mscurriculum.dto.AddressDto;
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 
 @Service

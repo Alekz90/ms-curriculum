@@ -1,6 +1,6 @@
 package alkz.mscurriculum.controller;
 
-import alejdaf.commonutils.dto.ResultDto;
+import akz.commonutils.dto.ResultDto;
 import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.service.interfaces.IAuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;

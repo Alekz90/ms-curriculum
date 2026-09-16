@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
+import akz.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.dto.AbilityGroupDto;
 import alkz.mscurriculum.service.interfaces.IAbilityGroupsService;
 import alkz.mscurriculum.service.interfaces.IProfessionalDetailsService;

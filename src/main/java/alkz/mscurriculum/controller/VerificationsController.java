@@ -1,7 +1,7 @@
 package alkz.mscurriculum.controller;
 
-import alejdaf.commonutils.dto.ResultDto;
-import alejdaf.commonutils.util.CommonConstants;
+import akz.commonutils.dto.ResultDto;
+import akz.commonutils.util.CommonConstants;
 import alkz.mscurriculum.service.interfaces.IVerificationsService;
 import alkz.mscurriculum.util.Constants;
 import io.swagger.v3.oas.annotations.tags.Tag;

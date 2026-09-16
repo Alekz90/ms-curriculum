@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.enums.ECommonError;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.enums.ECommonError;
 import alkz.mscurriculum.document.ProfessionalDetail;
 import alkz.mscurriculum.document.Summary;
 import alkz.mscurriculum.dto.SummaryDto;

@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
+import akz.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.document.Profile;
 import alkz.mscurriculum.dto.ProfileDto;
 import alkz.mscurriculum.repository.ProfilesRepository;
@@ -9,8 +9,6 @@ import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

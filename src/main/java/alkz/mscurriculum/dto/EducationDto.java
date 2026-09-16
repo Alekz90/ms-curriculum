@@ -1,6 +1,6 @@
 package alkz.mscurriculum.dto;
 
-import alejdaf.commonutils.annotation.ValidTittleText;
+import akz.commonutils.annotation.ValidTittleText;
 import alkz.mscurriculum.document.Education;
 import alkz.mscurriculum.util.enums.EEducationLevel;
 import io.swagger.v3.oas.annotations.media.Schema;
