@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alejdaf.commonutils.util.CommonConstants;
+import akz.commonutils.util.CommonConstants;
 import alkz.mscurriculum.dto.ImageDto;
 import alkz.mscurriculum.util.Utils;
 import lombok.AllArgsConstructor;

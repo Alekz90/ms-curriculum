@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.CommonUtils;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.CommonUtils;
 import alkz.mscurriculum.document.User;
 import alkz.mscurriculum.document.Verification;
 import alkz.mscurriculum.repository.VerificationsRepository;

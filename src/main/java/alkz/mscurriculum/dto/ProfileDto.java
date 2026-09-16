@@ -1,10 +1,10 @@
 package alkz.mscurriculum.dto;
 
-import alejdaf.commonutils.annotation.ValidCodePhone;
-import alejdaf.commonutils.annotation.ValidNameText;
-import alejdaf.commonutils.annotation.ValidPhone;
-import alejdaf.commonutils.util.CommonConstants;
-import alejdaf.commonutils.util.CommonUtils;
+import akz.commonutils.annotation.ValidCodePhone;
+import akz.commonutils.annotation.ValidNameText;
+import akz.commonutils.annotation.ValidPhone;
+import akz.commonutils.util.CommonConstants;
+import akz.commonutils.util.CommonUtils;
 import alkz.mscurriculum.document.Profile;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

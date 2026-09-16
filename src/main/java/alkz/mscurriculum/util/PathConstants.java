@@ -1,12 +1,12 @@
 package alkz.mscurriculum.util;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.enums.ECommonError;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.enums.ECommonError;
 
 import java.util.List;
 
-import static alejdaf.commonutils.util.CommonConstants.SLASH;
-import static alejdaf.commonutils.util.CommonConstants.SLASH_ALL;
+import static akz.commonutils.util.CommonConstants.SLASH;
+import static akz.commonutils.util.CommonConstants.SLASH_ALL;
 
 public final class PathConstants {
 

@@ -1,9 +1,9 @@
 package alkz.mscurriculum.controller;
 
-import alejdaf.commonutils.annotation.ValidIdentifier;
-import alejdaf.commonutils.annotation.ValidUsername;
-import alejdaf.commonutils.dto.ResultDto;
-import alejdaf.commonutils.util.CommonConstants;
+import akz.commonutils.annotation.ValidIdentifier;
+import akz.commonutils.annotation.ValidUsername;
+import akz.commonutils.dto.ResultDto;
+import akz.commonutils.util.CommonConstants;
 import alkz.mscurriculum.dto.UserDto;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import io.swagger.v3.oas.annotations.tags.Tag;

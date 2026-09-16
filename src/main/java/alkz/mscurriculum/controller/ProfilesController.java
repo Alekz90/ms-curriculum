@@ -1,8 +1,8 @@
 package alkz.mscurriculum.controller;
 
-import alejdaf.commonutils.dto.ResultDto;
-import alejdaf.commonutils.util.CommonConstants;
-import alejdaf.commonutils.util.CommonUtils;
+import akz.commonutils.dto.ResultDto;
+import akz.commonutils.util.CommonConstants;
+import akz.commonutils.util.CommonUtils;
 import alkz.mscurriculum.dto.ProfileDto;
 import alkz.mscurriculum.service.interfaces.IProfilesService;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,6 +1,6 @@
 package alkz.mscurriculum.document;
 
-import alejdaf.commonutils.util.CommonUtils;
+import akz.commonutils.util.CommonUtils;
 import alkz.mscurriculum.util.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,6 @@ public class Recovery {
   private LocalDateTime expirationDate;
   private LocalDateTime usedDate;
   private boolean used;
-
 
   public static Recovery build(String userId, String email) {
     return Recovery.builder()

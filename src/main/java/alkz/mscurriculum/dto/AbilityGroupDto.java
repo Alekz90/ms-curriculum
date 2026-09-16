@@ -1,6 +1,6 @@
 package alkz.mscurriculum.dto;
 
-import alejdaf.commonutils.annotation.ValidTittleText;
+import akz.commonutils.annotation.ValidTittleText;
 import alkz.mscurriculum.document.AbilityGroup;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;

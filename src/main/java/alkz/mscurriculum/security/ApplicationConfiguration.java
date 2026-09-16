@@ -1,7 +1,7 @@
 package alkz.mscurriculum.security;
 
-import alejdaf.commonutils.config.SwaggerConfig;
-import alejdaf.commonutils.util.SwaggerProperties;
+import akz.commonutils.config.SwaggerConfiguration;
+import akz.commonutils.util.SwaggerProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class ApplicationConfiguration {
 
   @Bean
   public OpenAPI customOpenAPI() {
-    return new SwaggerConfig(swaggerProperties()).customOpenAPI();
+    return new SwaggerConfiguration(swaggerProperties()).customOpenAPI();
   }
 
   @Bean

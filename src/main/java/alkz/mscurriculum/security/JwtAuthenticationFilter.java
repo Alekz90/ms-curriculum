@@ -1,15 +1,14 @@
 package alkz.mscurriculum.security;
 
-import alejdaf.commonutils.dto.ResultDto;
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.CommonUtils;
+import akz.commonutils.dto.ResultDto;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.CommonUtils;
 import alkz.mscurriculum.service.JwtService;
 import alkz.mscurriculum.util.enums.EError;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
@@ -26,9 +25,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Objects;
 
-import static alejdaf.commonutils.util.CommonConstants.*;
-import static alkz.mscurriculum.util.Constants.*;
-import static alkz.mscurriculum.util.PathConstants.*;
+import static akz.commonutils.util.CommonConstants.*;
+import static alkz.mscurriculum.util.Constants.BEARER;
+import static alkz.mscurriculum.util.PathConstants.WHITELIST_PATTERNS;
 
 @Log4j2
 @Component

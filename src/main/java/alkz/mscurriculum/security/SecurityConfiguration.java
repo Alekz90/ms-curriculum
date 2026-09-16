@@ -1,7 +1,6 @@
 package alkz.mscurriculum.security;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alkz.mscurriculum.service.JwtService;
+import akz.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

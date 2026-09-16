@@ -1,6 +1,6 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
+import akz.commonutils.exception.CustomCommonException;
 import alkz.mscurriculum.repository.UsersRepository;
 import alkz.mscurriculum.util.enums.EError;
 import lombok.RequiredArgsConstructor;

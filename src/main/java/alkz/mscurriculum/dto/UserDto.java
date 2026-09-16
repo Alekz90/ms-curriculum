@@ -1,7 +1,7 @@
 package alkz.mscurriculum.dto;
 
-import alejdaf.commonutils.annotation.ValidPassword;
-import alejdaf.commonutils.annotation.ValidUsername;
+import akz.commonutils.annotation.ValidPassword;
+import akz.commonutils.annotation.ValidUsername;
 import alkz.mscurriculum.document.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
