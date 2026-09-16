@@ -1,15 +1,15 @@
 package alkz.mscurriculum.util;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.enums.ECommonError;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.enums.ECommonError;
 import org.bson.types.ObjectId;
 
 import java.util.List;
 
-import static alejdaf.commonutils.util.CommonConstants.PATH_ALL_PATTERN;
-import static alejdaf.commonutils.util.CommonConstants.PATH_VARIABLE_PATTERN;
+import static akz.commonutils.util.CommonConstants.PATH_ALL_PATTERN;
+import static akz.commonutils.util.CommonConstants.PATH_VARIABLE_PATTERN;
 import static alkz.mscurriculum.util.Constants.*;
-import static alejdaf.commonutils.util.CommonConstants.*;
+import static akz.commonutils.util.CommonConstants.*;
 
 /**
  * Utility class for common operations

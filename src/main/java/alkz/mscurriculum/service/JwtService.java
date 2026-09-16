@@ -1,7 +1,7 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.util.CommonUtils;
-import document.User;
+import akz.commonutils.util.CommonUtils;
+import alkz.mscurriculum.document.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -9,11 +9,14 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.function.Function;
+
+import static alkz.mscurriculum.util.Constants.ROLE_NAME;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +31,7 @@ public class JwtService {
     Date currentDate = CommonUtils.getCurrentDateTime();
     return Jwts.builder()
         .subject(user.getUsername())
-        .claim("role", user.getRole().name())
+        .claim(ROLE_NAME, user.getRole().name())
         .issuedAt(currentDate)
         .expiration(CommonUtils.plusSecondsDateTime(currentDate, this.expirationTime))
         .signWith(this.getKey())
@@ -56,9 +59,9 @@ public class JwtService {
     return this.getClaim(token, claims ->  claims.get(claimName, String.class));
   }
 
-  public boolean isTokenValid(String token, User user) {
-    return user.getUsername().equals(this.getUsernameFromToken(token))
-        && BooleanUtils.isFalse(isTokenExpired(token));
+  public boolean isInvalidToken(String token, UserDetails user) {
+    return !user.getUsername().equals(this.getUsernameFromToken(token))
+        || !BooleanUtils.isFalse(isTokenExpired(token));
   }
 
   public <T> T getClaim(String token, Function<Claims, T> claimsResolver) {

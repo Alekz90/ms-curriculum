@@ -1,9 +1,9 @@
 package alkz.mscurriculum.service;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.CommonUtils;
-import document.User;
-import document.Verification;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.CommonUtils;
+import alkz.mscurriculum.document.User;
+import alkz.mscurriculum.document.Verification;
 import alkz.mscurriculum.repository.VerificationsRepository;
 import alkz.mscurriculum.service.interfaces.IUsersService;
 import alkz.mscurriculum.service.interfaces.IVerificationsService;
@@ -31,7 +31,7 @@ public class VerificationsService implements IVerificationsService {
     Verification verification = repository.findById(id)
         .orElseThrow(() -> new CustomCommonException(HttpStatus.NOT_FOUND, EError.VERIFICATION_NOT_FOUND));
 
-    User user = usersService.getUserById(verification.getUserId());
+    User user = usersService.findById(verification.getUserId());
     if (user.isVerified()) {
       throw new CustomCommonException(HttpStatus.CONFLICT, EError.USER_VERIFIED);
     }
@@ -48,6 +48,6 @@ public class VerificationsService implements IVerificationsService {
     user.setVerified(true);
 
     repository.save(verification);
-    usersService.updateUser(user);
+    usersService.update(user);
   }
 }

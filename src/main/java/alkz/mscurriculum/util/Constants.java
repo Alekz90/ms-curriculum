@@ -1,9 +1,7 @@
 package alkz.mscurriculum.util;
 
-import alejdaf.commonutils.exception.CustomCommonException;
-import alejdaf.commonutils.util.enums.ECommonError;
-
-import java.util.List;
+import akz.commonutils.exception.CustomCommonException;
+import akz.commonutils.util.enums.ECommonError;
 
 public class Constants {
   public static final String BEARER = "Bearer ";
